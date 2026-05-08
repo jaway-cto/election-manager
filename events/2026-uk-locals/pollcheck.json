@@ -1,0 +1,5810 @@
+{
+  "East Sussex CC": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/east_sussex/",
+    "p_control_change": 0.06,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 4,
+        "low": 3,
+        "high": 10
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 3,
+        "low": 2,
+        "high": 6
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 13,
+        "low": 9,
+        "high": 14
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 10,
+        "low": 6,
+        "high": 12
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 18,
+        "low": 10,
+        "high": 24
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 2,
+        "low": 1,
+        "high": 3
+      }
+    ],
+    "winner_central": "Ref"
+  },
+  "Essex CC": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/essex/",
+    "p_control_change": 1.0,
+    "majority_threshold": 58,
+    "total_seats": 78,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 4,
+        "low": 4,
+        "high": 16
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 6,
+        "low": 4,
+        "high": 7
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 5,
+        "low": 3,
+        "high": 8
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 1,
+        "low": 0,
+        "high": 3
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 58,
+        "low": 40,
+        "high": 58
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 4,
+        "low": 3,
+        "high": 8
+      }
+    ],
+    "winner_central": "Ref"
+  },
+  "Hampshire CC": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/hampshire/",
+    "p_control_change": 0.98,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 26,
+        "low": 18,
+        "high": 35
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 0,
+        "low": 0,
+        "high": 2
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 19,
+        "low": 14,
+        "high": 22
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 1,
+        "low": 0,
+        "high": 3
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 30,
+        "low": 17,
+        "high": 41
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 2,
+        "low": 1,
+        "high": 3
+      }
+    ],
+    "winner_central": "Ref"
+  },
+  "Norfolk CC": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/norfolk/",
+    "p_control_change": 1.0,
+    "majority_threshold": 68,
+    "total_seats": 84,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 1,
+        "low": 1,
+        "high": 12
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 7,
+        "low": 3,
+        "high": 9
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 2,
+        "low": 2,
+        "high": 9
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 5,
+        "low": 4,
+        "high": 8
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 68,
+        "low": 49,
+        "high": 68
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 1,
+        "low": 1,
+        "high": 2
+      }
+    ],
+    "winner_central": "Ref"
+  },
+  "Suffolk CC": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/suffolk/",
+    "p_control_change": 1.0,
+    "majority_threshold": 59,
+    "total_seats": 70,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 0,
+        "low": 0,
+        "high": 7
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 4,
+        "low": 2,
+        "high": 7
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 1,
+        "low": 0,
+        "high": 3
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 6,
+        "low": 5,
+        "high": 12
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 59,
+        "low": 44,
+        "high": 60
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 0,
+        "low": 0,
+        "high": 0
+      }
+    ],
+    "winner_central": "Ref"
+  },
+  "West Sussex CC": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/west_sussex/",
+    "p_control_change": 1.0,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 13,
+        "low": 9,
+        "high": 23
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 8,
+        "low": 5,
+        "high": 10
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 14,
+        "low": 8,
+        "high": 17
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 3,
+        "low": 2,
+        "high": 7
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 30,
+        "low": 15,
+        "high": 39
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 2,
+        "low": 2,
+        "high": 3
+      }
+    ],
+    "winner_central": "Ref"
+  },
+  "Barking & Dagenham": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/barking_and_dagenham/",
+    "p_control_change": 0.06,
+    "majority_threshold": 39,
+    "total_seats": 51,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 0,
+        "low": 0,
+        "high": 3
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 39,
+        "low": 27,
+        "high": 40
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 5,
+        "low": 3,
+        "high": 9
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 7,
+        "low": 4,
+        "high": 16
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Barnet": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/barnet/",
+    "p_control_change": 0.63,
+    "majority_threshold": 33,
+    "total_seats": 63,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 25,
+        "low": 17,
+        "high": 27
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 33,
+        "low": 23,
+        "high": 36
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 1,
+        "low": 0,
+        "high": 3
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 4,
+        "low": 1,
+        "high": 12
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 0,
+        "low": 0,
+        "high": 8
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 0,
+        "low": 0,
+        "high": 0
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Bexley": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/bexley/",
+    "p_control_change": 0.87,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 17,
+        "low": 9,
+        "high": 23
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 8,
+        "low": 4,
+        "high": 10
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 20,
+        "low": 13,
+        "high": 29
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 0,
+        "low": 0,
+        "high": 1
+      }
+    ],
+    "winner_central": "Ref"
+  },
+  "Brent": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/brent/",
+    "p_control_change": 0.66,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 7,
+        "low": 4,
+        "high": 10
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 26,
+        "low": 17,
+        "high": 34
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 5,
+        "low": 3,
+        "high": 6
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 19,
+        "low": 9,
+        "high": 29
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 0,
+        "low": 0,
+        "high": 0
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Bromley": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/bromley/",
+    "p_control_change": 0.99,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 19,
+        "low": 12,
+        "high": 25
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 5,
+        "low": 3,
+        "high": 9
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 6,
+        "low": 3,
+        "high": 10
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 4,
+        "low": 0,
+        "high": 7
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 21,
+        "low": 13,
+        "high": 30
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 3,
+        "low": 1,
+        "high": 3
+      }
+    ],
+    "winner_central": "Ref"
+  },
+  "Camden": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/camden/",
+    "p_control_change": 0.71,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 2,
+        "low": 2,
+        "high": 5
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 27,
+        "low": 20,
+        "high": 30
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 12,
+        "low": 8,
+        "high": 14
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 14,
+        "low": 9,
+        "high": 21
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Croydon (Mayor)": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/croydon/",
+    "p_control_change": 1.0,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 30,
+        "low": 20,
+        "high": 30
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 19,
+        "low": 12,
+        "high": 24
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 3,
+        "low": 1,
+        "high": 7
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 14,
+        "low": 8,
+        "high": 24
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 4,
+        "low": 2,
+        "high": 14
+      }
+    ],
+    "winner_central": "Con"
+  },
+  "Ealing": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/ealing/",
+    "p_control_change": 0.14,
+    "majority_threshold": 40,
+    "total_seats": 70,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 2,
+        "low": 1,
+        "high": 6
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 40,
+        "low": 34,
+        "high": 44
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 11,
+        "low": 7,
+        "high": 13
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 16,
+        "low": 8,
+        "high": 22
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 1,
+        "low": 0,
+        "high": 5
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 0,
+        "low": 0,
+        "high": 0
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Enfield": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/enfield/",
+    "p_control_change": 0.88,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 21,
+        "low": 14,
+        "high": 23
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 29,
+        "low": 22,
+        "high": 32
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 11,
+        "low": 4,
+        "high": 17
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 2,
+        "low": 1,
+        "high": 12
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 0,
+        "low": 0,
+        "high": 0
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Greenwich": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/greenwich/",
+    "p_control_change": 0.82,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 6,
+        "low": 3,
+        "high": 8
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 25,
+        "low": 15,
+        "high": 30
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 20,
+        "low": 11,
+        "high": 25
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 4,
+        "low": 3,
+        "high": 14
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 0,
+        "low": 0,
+        "high": 0
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Hackney (Mayor)": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/hackney/",
+    "p_control_change": 0.94,
+    "majority_threshold": 29,
+    "total_seats": 57,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 7,
+        "low": 5,
+        "high": 8
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 19,
+        "low": 11,
+        "high": 26
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 29,
+        "low": 21,
+        "high": 35
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 2,
+        "low": 2,
+        "high": 5
+      }
+    ],
+    "winner_central": "Grn"
+  },
+  "Hammersmith & Fulham": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/hammersmith_and_fulham/",
+    "p_control_change": null,
+    "majority_threshold": 38,
+    "total_seats": 50,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 10,
+        "low": 7,
+        "high": 13
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 38,
+        "low": 32,
+        "high": 39
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 1,
+        "low": 0,
+        "high": 4
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 1,
+        "low": 0,
+        "high": 5
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 0,
+        "low": 0,
+        "high": 0
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Haringey": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/haringey/",
+    "p_control_change": 0.88,
+    "majority_threshold": 30,
+    "total_seats": 57,
+    "projection": [
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 22,
+        "low": 17,
+        "high": 29
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 5,
+        "low": 3,
+        "high": 12
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 30,
+        "low": 18,
+        "high": 35
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 0,
+        "low": 0,
+        "high": 0
+      }
+    ],
+    "winner_central": "Grn"
+  },
+  "Harrow": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/harrow/",
+    "p_control_change": 0.13,
+    "majority_threshold": 33,
+    "total_seats": 55,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 33,
+        "low": 27,
+        "high": 36
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 15,
+        "low": 11,
+        "high": 19
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 2,
+        "low": 0,
+        "high": 5
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 5,
+        "low": 1,
+        "high": 8
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 0,
+        "low": 0,
+        "high": 0
+      }
+    ],
+    "winner_central": "Con"
+  },
+  "Havering": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/havering/",
+    "p_control_change": 0.98,
+    "majority_threshold": 30,
+    "total_seats": 55,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 6,
+        "low": 2,
+        "high": 13
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 0,
+        "low": 0,
+        "high": 3
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 30,
+        "low": 17,
+        "high": 37
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 19,
+        "low": 13,
+        "high": 25
+      }
+    ],
+    "winner_central": "Ref"
+  },
+  "Hillingdon": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/hillingdon/",
+    "p_control_change": 0.17,
+    "majority_threshold": 31,
+    "total_seats": 53,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 31,
+        "low": 25,
+        "high": 33
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 20,
+        "low": 15,
+        "high": 21
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 0,
+        "low": 0,
+        "high": 2
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 2,
+        "low": 1,
+        "high": 9
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 0,
+        "low": 0,
+        "high": 0
+      }
+    ],
+    "winner_central": "Con"
+  },
+  "Hounslow": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/hounslow/",
+    "p_control_change": 0.24,
+    "majority_threshold": 40,
+    "total_seats": 62,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 10,
+        "low": 6,
+        "high": 16
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 40,
+        "low": 28,
+        "high": 41
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 4,
+        "low": 1,
+        "high": 8
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 1,
+        "low": 0,
+        "high": 4
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 5,
+        "low": 2,
+        "high": 15
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 2,
+        "low": 0,
+        "high": 3
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Islington": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/islington/",
+    "p_control_change": 0.43,
+    "majority_threshold": 28,
+    "total_seats": 51,
+    "projection": [
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 28,
+        "low": 20,
+        "high": 34
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 2,
+        "low": 1,
+        "high": 5
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 20,
+        "low": 12,
+        "high": 27
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 1,
+        "low": 0,
+        "high": 2
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Kensington & Chelsea": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/kensington_and_chelsea/",
+    "p_control_change": 0.32,
+    "majority_threshold": 27,
+    "total_seats": 50,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 27,
+        "low": 23,
+        "high": 31
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 12,
+        "low": 9,
+        "high": 13
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 10,
+        "low": 6,
+        "high": 14
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 1,
+        "low": 0,
+        "high": 4
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 0,
+        "low": 0,
+        "high": 0
+      }
+    ],
+    "winner_central": "Con"
+  },
+  "Kingston upon Thames": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/kingston_upon_thames/",
+    "p_control_change": null,
+    "majority_threshold": 43,
+    "total_seats": 48,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 1,
+        "low": 0,
+        "high": 3
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 43,
+        "low": 36,
+        "high": 45
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 1,
+        "low": 0,
+        "high": 3
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 3,
+        "low": 2,
+        "high": 6
+      }
+    ],
+    "winner_central": "LD"
+  },
+  "Lambeth": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/lambeth/",
+    "p_control_change": 0.81,
+    "projection": [
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 26,
+        "low": 18,
+        "high": 34
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 7,
+        "low": 4,
+        "high": 9
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 30,
+        "low": 21,
+        "high": 38
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 0,
+        "low": 0,
+        "high": 0
+      }
+    ],
+    "winner_central": "Grn"
+  },
+  "Lewisham (Mayor)": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/lewisham/",
+    "p_control_change": 0.67,
+    "projection": [
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 25,
+        "low": 15,
+        "high": 33
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 2,
+        "low": 0,
+        "high": 7
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 27,
+        "low": 16,
+        "high": 34
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 0,
+        "low": 0,
+        "high": 0
+      }
+    ],
+    "winner_central": "Grn"
+  },
+  "Merton": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/merton/",
+    "p_control_change": 0.84,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 2,
+        "low": 1,
+        "high": 6
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 27,
+        "low": 22,
+        "high": 29
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 24,
+        "low": 18,
+        "high": 25
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 2,
+        "low": 0,
+        "high": 5
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 2,
+        "low": 2,
+        "high": 2
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Newham (Mayor)": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/newham/",
+    "p_control_change": 0.58,
+    "majority_threshold": 35,
+    "total_seats": 66,
+    "projection": [
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 35,
+        "low": 23,
+        "high": 41
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 14,
+        "low": 8,
+        "high": 24
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 17,
+        "low": 12,
+        "high": 21
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Redbridge": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/redbridge/",
+    "p_control_change": 0.28,
+    "majority_threshold": 37,
+    "total_seats": 63,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 13,
+        "low": 8,
+        "high": 19
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 37,
+        "low": 27,
+        "high": 41
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 1,
+        "low": 0,
+        "high": 4
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 4,
+        "low": 2,
+        "high": 10
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 4,
+        "low": 1,
+        "high": 6
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 4,
+        "low": 2,
+        "high": 7
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Richmond upon Thames": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/richmond_upon_thames/",
+    "p_control_change": null,
+    "majority_threshold": 47,
+    "total_seats": 54,
+    "projection": [
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 47,
+        "low": 42,
+        "high": 51
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 7,
+        "low": 3,
+        "high": 11
+      }
+    ],
+    "winner_central": "LD"
+  },
+  "Southwark": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/southwark/",
+    "p_control_change": 0.68,
+    "projection": [
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 30,
+        "low": 20,
+        "high": 37
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 16,
+        "low": 11,
+        "high": 21
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 17,
+        "low": 10,
+        "high": 26
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 0,
+        "low": 0,
+        "high": 0
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Sutton": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/sutton/",
+    "p_control_change": 0.02,
+    "majority_threshold": 41,
+    "total_seats": 55,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 7,
+        "low": 4,
+        "high": 12
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 1,
+        "low": 0,
+        "high": 2
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 41,
+        "low": 30,
+        "high": 43
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 1,
+        "low": 0,
+        "high": 4
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 3,
+        "low": 1,
+        "high": 13
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 2,
+        "low": 0,
+        "high": 3
+      }
+    ],
+    "winner_central": "LD"
+  },
+  "Tower Hamlets (Mayor)": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/tower_hamlets/",
+    "p_control_change": 0.01,
+    "majority_threshold": 36,
+    "total_seats": 45,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 0,
+        "low": 0,
+        "high": 1
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 3,
+        "low": 2,
+        "high": 6
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 1,
+        "low": 0,
+        "high": 2
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 5,
+        "low": 3,
+        "high": 10
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 36,
+        "low": 30,
+        "high": 37
+      }
+    ],
+    "winner_central": "Oth"
+  },
+  "Waltham Forest": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/waltham_forest/",
+    "p_control_change": 0.89,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 11,
+        "low": 8,
+        "high": 11
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 23,
+        "low": 16,
+        "high": 32
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 24,
+        "low": 14,
+        "high": 32
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 2,
+        "low": 0,
+        "high": 4
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 0,
+        "low": 0,
+        "high": 0
+      }
+    ],
+    "winner_central": "Grn"
+  },
+  "Wandsworth": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/wandsworth/",
+    "p_control_change": 0.93,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 29,
+        "low": 19,
+        "high": 30
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 24,
+        "low": 18,
+        "high": 28
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 1,
+        "low": 0,
+        "high": 4
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 1,
+        "low": 1,
+        "high": 11
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 2,
+        "low": 0,
+        "high": 4
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 1,
+        "low": 1,
+        "high": 1
+      }
+    ],
+    "winner_central": "Con"
+  },
+  "Westminster": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/westminster/",
+    "p_control_change": 1.0,
+    "majority_threshold": 32,
+    "total_seats": 54,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 32,
+        "low": 23,
+        "high": 32
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 18,
+        "low": 13,
+        "high": 22
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 1,
+        "low": 0,
+        "high": 2
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 3,
+        "low": 2,
+        "high": 13
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 0,
+        "low": 0,
+        "high": 2
+      }
+    ],
+    "winner_central": "Con"
+  },
+  "Barnsley": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/barnsley/",
+    "p_control_change": 1.0,
+    "majority_threshold": 37,
+    "total_seats": 63,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 0,
+        "low": 0,
+        "high": 3
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 14,
+        "low": 11,
+        "high": 22
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 11,
+        "low": 8,
+        "high": 12
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 37,
+        "low": 27,
+        "high": 41
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 1,
+        "low": 0,
+        "high": 1
+      }
+    ],
+    "winner_central": "Ref"
+  },
+  "Birmingham": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/birmingham/",
+    "p_control_change": 1.0,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 21,
+        "low": 15,
+        "high": 27
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 9,
+        "low": 8,
+        "high": 18
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 13,
+        "low": 12,
+        "high": 15
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 16,
+        "low": 9,
+        "high": 20
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 23,
+        "low": 12,
+        "high": 33
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 19,
+        "low": 12,
+        "high": 20
+      }
+    ],
+    "winner_central": "Ref"
+  },
+  "Bolton": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/bolton/",
+    "p_control_change": null,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 11,
+        "low": 10,
+        "high": 13
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 20,
+        "low": 19,
+        "high": 23
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 7,
+        "low": 5,
+        "high": 7
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 3,
+        "low": 2,
+        "high": 5
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 7,
+        "low": 4,
+        "high": 9
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 12,
+        "low": 11,
+        "high": 13
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Bradford": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/bradford/",
+    "p_control_change": 1.0,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 11,
+        "low": 6,
+        "high": 14
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 13,
+        "low": 7,
+        "high": 20
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 9,
+        "low": 6,
+        "high": 9
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 21,
+        "low": 14,
+        "high": 28
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 18,
+        "low": 13,
+        "high": 27
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 18,
+        "low": 15,
+        "high": 21
+      }
+    ],
+    "winner_central": "Grn"
+  },
+  "Bury": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/bury/",
+    "p_control_change": null,
+    "majority_threshold": 30,
+    "total_seats": 51,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 4,
+        "low": 3,
+        "high": 5
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 30,
+        "low": 28,
+        "high": 32
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 9,
+        "low": 4,
+        "high": 10
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 8,
+        "low": 7,
+        "high": 10
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Calderdale": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/calderdale/",
+    "p_control_change": 1.0,
+    "majority_threshold": 30,
+    "total_seats": 54,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 4,
+        "low": 1,
+        "high": 7
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 5,
+        "low": 4,
+        "high": 13
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 5,
+        "low": 3,
+        "high": 7
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 9,
+        "low": 5,
+        "high": 12
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 30,
+        "low": 16,
+        "high": 31
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 1,
+        "low": 0,
+        "high": 3
+      }
+    ],
+    "winner_central": "Ref"
+  },
+  "Coventry": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/coventry/",
+    "p_control_change": 0.92,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 5,
+        "low": 3,
+        "high": 12
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 20,
+        "low": 13,
+        "high": 27
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 3,
+        "low": 0,
+        "high": 5
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 26,
+        "low": 14,
+        "high": 33
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 0,
+        "low": 0,
+        "high": 1
+      }
+    ],
+    "winner_central": "Ref"
+  },
+  "Dudley": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/dudley/",
+    "p_control_change": null,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 26,
+        "low": 26,
+        "high": 32
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 14,
+        "low": 14,
+        "high": 17
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 5,
+        "low": 4,
+        "high": 5
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 24,
+        "low": 16,
+        "high": 24
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 3,
+        "low": 3,
+        "high": 3
+      }
+    ],
+    "winner_central": "Con"
+  },
+  "Gateshead": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/gateshead/",
+    "p_control_change": 0.99,
+    "majority_threshold": 36,
+    "total_seats": 66,
+    "projection": [
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 11,
+        "low": 7,
+        "high": 22
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 18,
+        "low": 11,
+        "high": 20
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 1,
+        "low": 0,
+        "high": 5
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 36,
+        "low": 22,
+        "high": 45
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 0,
+        "low": 0,
+        "high": 0
+      }
+    ],
+    "winner_central": "Ref"
+  },
+  "Kirklees": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/kirklees/",
+    "p_control_change": 0.01,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 8,
+        "low": 5,
+        "high": 13
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 1,
+        "low": 0,
+        "high": 5
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 10,
+        "low": 5,
+        "high": 12
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 15,
+        "low": 9,
+        "high": 18
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 18,
+        "low": 11,
+        "high": 27
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 17,
+        "low": 14,
+        "high": 18
+      }
+    ],
+    "winner_central": "Ref"
+  },
+  "Knowsley": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/knowsley/",
+    "p_control_change": null,
+    "majority_threshold": 27,
+    "total_seats": 45,
+    "projection": [
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 27,
+        "low": 25,
+        "high": 29
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 3,
+        "low": 2,
+        "high": 3
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 10,
+        "low": 8,
+        "high": 11
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 5,
+        "low": 3,
+        "high": 5
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Leeds": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/leeds/",
+    "p_control_change": 0.92,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 11,
+        "low": 10,
+        "high": 13
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 47,
+        "low": 43,
+        "high": 49
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 7,
+        "low": 6,
+        "high": 7
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 14,
+        "low": 10,
+        "high": 15
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 9,
+        "low": 7,
+        "high": 15
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 11,
+        "low": 10,
+        "high": 12
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Manchester": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/manchester/",
+    "p_control_change": null,
+    "majority_threshold": 72,
+    "total_seats": 96,
+    "projection": [
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 72,
+        "low": 66,
+        "high": 75
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 5,
+        "low": 4,
+        "high": 6
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 13,
+        "low": 7,
+        "high": 17
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 1,
+        "low": 1,
+        "high": 5
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 5,
+        "low": 4,
+        "high": 6
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Newcastle upon Tyne": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/newcastle_upon_tyne/",
+    "p_control_change": 0.03,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 0,
+        "low": 0,
+        "high": 2
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 10,
+        "low": 6,
+        "high": 18
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 24,
+        "low": 16,
+        "high": 26
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 18,
+        "low": 12,
+        "high": 23
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 23,
+        "low": 13,
+        "high": 35
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 3,
+        "low": 3,
+        "high": 5
+      }
+    ],
+    "winner_central": "LD"
+  },
+  "North Tyneside (Mayor)": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/north_tyneside/",
+    "p_control_change": null,
+    "majority_threshold": 34,
+    "total_seats": 60,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 7,
+        "low": 7,
+        "high": 9
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 34,
+        "low": 34,
+        "high": 39
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 1,
+        "low": 1,
+        "high": 5
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 18,
+        "low": 10,
+        "high": 18
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 0,
+        "low": 0,
+        "high": 1
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Oldham": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/oldham/",
+    "p_control_change": null,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 7,
+        "low": 6,
+        "high": 8
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 18,
+        "low": 15,
+        "high": 19
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 9,
+        "low": 6,
+        "high": 9
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 10,
+        "low": 8,
+        "high": 14
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 16,
+        "low": 15,
+        "high": 17
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Rochdale": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/rochdale/",
+    "p_control_change": 0.72,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 6,
+        "low": 5,
+        "high": 8
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 29,
+        "low": 29,
+        "high": 31
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 4,
+        "low": 3,
+        "high": 4
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 17,
+        "low": 11,
+        "high": 17
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 4,
+        "low": 4,
+        "high": 7
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Salford (Mayor)": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/salford/",
+    "p_control_change": null,
+    "majority_threshold": 44,
+    "total_seats": 60,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 6,
+        "low": 5,
+        "high": 7
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 44,
+        "low": 37,
+        "high": 44
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 2,
+        "low": 2,
+        "high": 2
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 6,
+        "low": 5,
+        "high": 13
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 2,
+        "low": 2,
+        "high": 3
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Sandwell": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/sandwell/",
+    "p_control_change": 0.12,
+    "majority_threshold": 52,
+    "total_seats": 72,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 2,
+        "low": 2,
+        "high": 7
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 52,
+        "low": 36,
+        "high": 53
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 0,
+        "low": 0,
+        "high": 5
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 17,
+        "low": 13,
+        "high": 29
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 1,
+        "low": 0,
+        "high": 1
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Sefton": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/sefton/",
+    "p_control_change": 0.71,
+    "majority_threshold": 35,
+    "total_seats": 66,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 1,
+        "low": 0,
+        "high": 3
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 35,
+        "low": 23,
+        "high": 37
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 12,
+        "low": 7,
+        "high": 15
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 3,
+        "low": 2,
+        "high": 6
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 15,
+        "low": 9,
+        "high": 27
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 0,
+        "low": 0,
+        "high": 3
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Sheffield": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/sheffield/",
+    "p_control_change": null,
+    "projection": [
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 26,
+        "low": 24,
+        "high": 30
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 26,
+        "low": 22,
+        "high": 26
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 20,
+        "low": 18,
+        "high": 23
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 6,
+        "low": 4,
+        "high": 9
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 6,
+        "low": 6,
+        "high": 7
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Solihull": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/solihull/",
+    "p_control_change": 0.56,
+    "majority_threshold": 27,
+    "total_seats": 51,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 27,
+        "low": 19,
+        "high": 28
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 0,
+        "low": 0,
+        "high": 0
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 7,
+        "low": 3,
+        "high": 8
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 12,
+        "low": 8,
+        "high": 14
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 5,
+        "low": 4,
+        "high": 17
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 0,
+        "low": 0,
+        "high": 0
+      }
+    ],
+    "winner_central": "Con"
+  },
+  "South Tyneside": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/south_tyneside/",
+    "p_control_change": 0.3,
+    "projection": [
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 0,
+        "low": 0,
+        "high": 3
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 12,
+        "low": 10,
+        "high": 16
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 27,
+        "low": 18,
+        "high": 33
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 15,
+        "low": 9,
+        "high": 20
+      }
+    ],
+    "winner_central": "Ref"
+  },
+  "St Helens": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/st_helens/",
+    "p_control_change": 1.0,
+    "majority_threshold": 25,
+    "total_seats": 48,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 1,
+        "low": 0,
+        "high": 2
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 9,
+        "low": 6,
+        "high": 15
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 3,
+        "low": 3,
+        "high": 3
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 5,
+        "low": 3,
+        "high": 7
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 25,
+        "low": 17,
+        "high": 31
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 5,
+        "low": 3,
+        "high": 6
+      }
+    ],
+    "winner_central": "Ref"
+  },
+  "Stockport": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/stockport/",
+    "p_control_change": 0.33,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 1,
+        "low": 1,
+        "high": 2
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 18,
+        "low": 15,
+        "high": 18
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 31,
+        "low": 29,
+        "high": 32
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 3,
+        "low": 3,
+        "high": 4
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 1,
+        "low": 0,
+        "high": 4
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 9,
+        "low": 8,
+        "high": 9
+      }
+    ],
+    "winner_central": "LD"
+  },
+  "Sunderland": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/sunderland/",
+    "p_control_change": 1.0,
+    "majority_threshold": 47,
+    "total_seats": 75,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 0,
+        "low": 0,
+        "high": 4
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 14,
+        "low": 9,
+        "high": 24
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 14,
+        "low": 8,
+        "high": 14
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 47,
+        "low": 35,
+        "high": 54
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 0,
+        "low": 0,
+        "high": 0
+      }
+    ],
+    "winner_central": "Ref"
+  },
+  "Tameside": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/tameside/",
+    "p_control_change": 0.48,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 5,
+        "low": 5,
+        "high": 7
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 28,
+        "low": 27,
+        "high": 31
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 3,
+        "low": 1,
+        "high": 6
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 14,
+        "low": 8,
+        "high": 16
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 7,
+        "low": 7,
+        "high": 7
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Trafford": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/trafford/",
+    "p_control_change": null,
+    "majority_threshold": 39,
+    "total_seats": 63,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 11,
+        "low": 10,
+        "high": 12
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 39,
+        "low": 34,
+        "high": 39
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 7,
+        "low": 7,
+        "high": 8
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 6,
+        "low": 5,
+        "high": 8
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Wakefield": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/wakefield/",
+    "p_control_change": 0.97,
+    "majority_threshold": 48,
+    "total_seats": 63,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 0,
+        "low": 0,
+        "high": 2
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 10,
+        "low": 10,
+        "high": 27
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 2,
+        "low": 1,
+        "high": 3
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 3,
+        "low": 0,
+        "high": 6
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 48,
+        "low": 29,
+        "high": 48
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 0,
+        "low": 0,
+        "high": 1
+      }
+    ],
+    "winner_central": "Ref"
+  },
+  "Walsall": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/walsall/",
+    "p_control_change": 0.74,
+    "majority_threshold": 39,
+    "total_seats": 60,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 13,
+        "low": 10,
+        "high": 21
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 0,
+        "low": 0,
+        "high": 5
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 39,
+        "low": 27,
+        "high": 41
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 8,
+        "low": 4,
+        "high": 10
+      }
+    ],
+    "winner_central": "Ref"
+  },
+  "Wigan": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/wigan/",
+    "p_control_change": null,
+    "majority_threshold": 44,
+    "total_seats": 75,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 0,
+        "low": 0,
+        "high": 1
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 44,
+        "low": 43,
+        "high": 49
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 23,
+        "low": 17,
+        "high": 24
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 8,
+        "low": 7,
+        "high": 9
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Wolverhampton": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/wolverhampton/",
+    "p_control_change": 0.02,
+    "majority_threshold": 38,
+    "total_seats": 60,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 11,
+        "low": 9,
+        "high": 13
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 38,
+        "low": 32,
+        "high": 39
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 1,
+        "low": 0,
+        "high": 2
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 8,
+        "low": 6,
+        "high": 15
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 2,
+        "low": 2,
+        "high": 2
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Blackburn with Darwen": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/blackburn_with_darwen/",
+    "p_control_change": 1.0,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 6,
+        "low": 6,
+        "high": 7
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 19,
+        "low": 18,
+        "high": 23
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 3,
+        "low": 1,
+        "high": 6
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 10,
+        "low": 4,
+        "high": 10
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 13,
+        "low": 13,
+        "high": 15
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "East Surrey (shadow)": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/east_surrey/",
+    "p_control_change": 1.0,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 9,
+        "low": 8,
+        "high": 14
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 24,
+        "low": 18,
+        "high": 28
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 9,
+        "low": 8,
+        "high": 10
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 11,
+        "low": 8,
+        "high": 16
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 19,
+        "low": 15,
+        "high": 19
+      }
+    ],
+    "winner_central": "LD"
+  },
+  "Halton": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/halton/",
+    "p_control_change": 0.01,
+    "majority_threshold": 37,
+    "total_seats": 54,
+    "projection": [
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 37,
+        "low": 32,
+        "high": 40
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 3,
+        "low": 3,
+        "high": 4
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 8,
+        "low": 5,
+        "high": 12
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 6,
+        "low": 6,
+        "high": 6
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Hartlepool": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/hartlepool/",
+    "p_control_change": 0.65,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 0,
+        "low": 0,
+        "high": 1
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 17,
+        "low": 16,
+        "high": 20
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 14,
+        "low": 11,
+        "high": 14
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 5,
+        "low": 5,
+        "high": 5
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Hull (Kingston upon Hull)": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/kingston_upon_hull/",
+    "p_control_change": 0.94,
+    "projection": [
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 15,
+        "low": 15,
+        "high": 17
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 28,
+        "low": 24,
+        "high": 28
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 9,
+        "low": 8,
+        "high": 12
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 5,
+        "low": 5,
+        "high": 5
+      }
+    ],
+    "winner_central": "LD"
+  },
+  "Isle of Wight": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/isle_of_wight/",
+    "p_control_change": 0.8,
+    "majority_threshold": 27,
+    "total_seats": 39,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 3,
+        "low": 2,
+        "high": 8
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 0,
+        "low": 0,
+        "high": 1
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 0,
+        "low": 0,
+        "high": 1
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 2,
+        "low": 1,
+        "high": 5
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 27,
+        "low": 17,
+        "high": 28
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 7,
+        "low": 5,
+        "high": 10
+      }
+    ],
+    "winner_central": "Ref"
+  },
+  "Milton Keynes": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/milton_keynes/",
+    "p_control_change": 1.0,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 10,
+        "low": 4,
+        "high": 14
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 8,
+        "low": 4,
+        "high": 14
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 16,
+        "low": 10,
+        "high": 18
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 26,
+        "low": 14,
+        "high": 33
+      }
+    ],
+    "winner_central": "Ref"
+  },
+  "North East Lincolnshire": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/north_east_lincolnshire/",
+    "p_control_change": null,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 9,
+        "low": 9,
+        "high": 12
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 11,
+        "low": 11,
+        "high": 12
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 3,
+        "low": 2,
+        "high": 3
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 15,
+        "low": 12,
+        "high": 16
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 4,
+        "low": 4,
+        "high": 4
+      }
+    ],
+    "winner_central": "Ref"
+  },
+  "Peterborough": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/peterborough/",
+    "p_control_change": null,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 6,
+        "low": 6,
+        "high": 8
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 7,
+        "low": 7,
+        "high": 8
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 7,
+        "low": 5,
+        "high": 8
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 9,
+        "low": 6,
+        "high": 9
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 10,
+        "low": 7,
+        "high": 13
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 21,
+        "low": 20,
+        "high": 21
+      }
+    ],
+    "winner_central": "Oth"
+  },
+  "Plymouth": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/plymouth/",
+    "p_control_change": null,
+    "majority_threshold": 34,
+    "total_seats": 57,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 2,
+        "low": 2,
+        "high": 4
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 34,
+        "low": 32,
+        "high": 37
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 0,
+        "low": 0,
+        "high": 0
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 3,
+        "low": 2,
+        "high": 3
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 13,
+        "low": 9,
+        "high": 15
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 5,
+        "low": 5,
+        "high": 5
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Portsmouth": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/portsmouth/",
+    "p_control_change": 0.06,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 2,
+        "low": 2,
+        "high": 3
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 4,
+        "low": 4,
+        "high": 5
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 16,
+        "low": 15,
+        "high": 18
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 20,
+        "low": 18,
+        "high": 21
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 0,
+        "low": 0,
+        "high": 0
+      }
+    ],
+    "winner_central": "Ref"
+  },
+  "Reading": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/reading/",
+    "p_control_change": 0.01,
+    "majority_threshold": 29,
+    "total_seats": 48,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 2,
+        "low": 2,
+        "high": 4
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 29,
+        "low": 25,
+        "high": 30
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 3,
+        "low": 3,
+        "high": 3
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 9,
+        "low": 8,
+        "high": 11
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 5,
+        "low": 2,
+        "high": 8
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 0,
+        "low": 0,
+        "high": 0
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Southampton": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/southampton/",
+    "p_control_change": 0.95,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 6,
+        "low": 5,
+        "high": 9
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 23,
+        "low": 22,
+        "high": 25
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 8,
+        "low": 8,
+        "high": 9
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 2,
+        "low": 1,
+        "high": 3
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 11,
+        "low": 6,
+        "high": 12
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 1,
+        "low": 1,
+        "high": 1
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Southend-on-Sea": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/southend_on_sea/",
+    "p_control_change": null,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 8,
+        "low": 8,
+        "high": 11
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 13,
+        "low": 13,
+        "high": 16
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 3,
+        "low": 3,
+        "high": 4
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 3,
+        "low": 3,
+        "high": 4
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 19,
+        "low": 11,
+        "high": 19
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 5,
+        "low": 5,
+        "high": 7
+      }
+    ],
+    "winner_central": "Ref"
+  },
+  "Swindon": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/swindon/",
+    "p_control_change": 0.94,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 7,
+        "low": 5,
+        "high": 18
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 22,
+        "low": 13,
+        "high": 28
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 2,
+        "low": 0,
+        "high": 3
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 0,
+        "low": 0,
+        "high": 3
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 26,
+        "low": 12,
+        "high": 34
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 0,
+        "low": 0,
+        "high": 0
+      }
+    ],
+    "winner_central": "Ref"
+  },
+  "Thurrock": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/thurrock/",
+    "p_control_change": 0.99,
+    "majority_threshold": 39,
+    "total_seats": 49,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 0,
+        "low": 0,
+        "high": 1
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 10,
+        "low": 6,
+        "high": 15
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 39,
+        "low": 32,
+        "high": 42
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 0,
+        "low": 0,
+        "high": 2
+      }
+    ],
+    "winner_central": "Ref"
+  },
+  "West Surrey (shadow)": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/west_surrey/",
+    "p_control_change": 1.0,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 18,
+        "low": 12,
+        "high": 21
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 3,
+        "low": 2,
+        "high": 5
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 45,
+        "low": 37,
+        "high": 49
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 10,
+        "low": 10,
+        "high": 19
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 14,
+        "low": 10,
+        "high": 14
+      }
+    ],
+    "winner_central": "LD"
+  },
+  "Wokingham": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/wokingham/",
+    "p_control_change": 0.1,
+    "majority_threshold": 31,
+    "total_seats": 54,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 15,
+        "low": 14,
+        "high": 17
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 4,
+        "low": 3,
+        "high": 5
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 31,
+        "low": 27,
+        "high": 32
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 1,
+        "low": 0,
+        "high": 2
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 1,
+        "low": 0,
+        "high": 4
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 2,
+        "low": 2,
+        "high": 2
+      }
+    ],
+    "winner_central": "LD"
+  },
+  "Huntingdonshire": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/huntingdonshire/",
+    "p_control_change": 0.1,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 21,
+        "low": 19,
+        "high": 27
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 0,
+        "low": 0,
+        "high": 3
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 16,
+        "low": 11,
+        "high": 16
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 2,
+        "low": 2,
+        "high": 4
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 9,
+        "low": 4,
+        "high": 12
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 4,
+        "low": 1,
+        "high": 5
+      }
+    ],
+    "winner_central": "Con"
+  },
+  "Newcastle-under-Lyme": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/newcastle_under_lyme/",
+    "p_control_change": 0.99,
+    "majority_threshold": 28,
+    "total_seats": 44,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 11,
+        "low": 10,
+        "high": 19
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 5,
+        "low": 4,
+        "high": 10
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 28,
+        "low": 17,
+        "high": 28
+      }
+    ],
+    "winner_central": "Ref"
+  },
+  "South Cambridgeshire": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/south_cambridgeshire/",
+    "p_control_change": null,
+    "majority_threshold": 40,
+    "total_seats": 45,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 3,
+        "low": 2,
+        "high": 9
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 40,
+        "low": 31,
+        "high": 40
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 2,
+        "low": 1,
+        "high": 6
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 0,
+        "low": 0,
+        "high": 0
+      }
+    ],
+    "winner_central": "LD"
+  },
+  "Adur": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/adur/",
+    "p_control_change": null,
+    "majority_threshold": 18,
+    "total_seats": 29,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 0,
+        "low": 0,
+        "high": 2
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 18,
+        "low": 16,
+        "high": 20
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 2,
+        "low": 2,
+        "high": 3
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 8,
+        "low": 4,
+        "high": 9
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 1,
+        "low": 1,
+        "high": 1
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Cheltenham": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/cheltenham/",
+    "p_control_change": null,
+    "majority_threshold": 36,
+    "total_seats": 40,
+    "projection": [
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 36,
+        "low": 35,
+        "high": 37
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 3,
+        "low": 1,
+        "high": 3
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 1,
+        "low": 1,
+        "high": 1
+      }
+    ],
+    "winner_central": "LD"
+  },
+  "Fareham": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/fareham/",
+    "p_control_change": 0.47,
+    "majority_threshold": 17,
+    "total_seats": 32,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 17,
+        "low": 14,
+        "high": 19
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 1,
+        "low": 1,
+        "high": 1
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 9,
+        "low": 6,
+        "high": 9
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 4,
+        "low": 3,
+        "high": 8
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 1,
+        "low": 1,
+        "high": 1
+      }
+    ],
+    "winner_central": "Con"
+  },
+  "Gosport": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/gosport/",
+    "p_control_change": 0.04,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 10,
+        "low": 8,
+        "high": 11
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 0,
+        "low": 0,
+        "high": 0
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 13,
+        "low": 10,
+        "high": 13
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 4,
+        "low": 3,
+        "high": 9
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 1,
+        "low": 1,
+        "high": 1
+      }
+    ],
+    "winner_central": "LD"
+  },
+  "Hastings": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/hastings/",
+    "p_control_change": 0.86,
+    "majority_threshold": 19,
+    "total_seats": 32,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 2,
+        "low": 2,
+        "high": 4
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 4,
+        "low": 4,
+        "high": 6
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 19,
+        "low": 16,
+        "high": 20
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 6,
+        "low": 3,
+        "high": 7
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 1,
+        "low": 1,
+        "high": 1
+      }
+    ],
+    "winner_central": "Grn"
+  },
+  "Nuneaton & Bedworth": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/nuneaton_and_bedworth/",
+    "p_control_change": null,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 11,
+        "low": 10,
+        "high": 14
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 9,
+        "low": 9,
+        "high": 12
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 0,
+        "low": 0,
+        "high": 0
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 3,
+        "low": 2,
+        "high": 4
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 15,
+        "low": 9,
+        "high": 15
+      }
+    ],
+    "winner_central": "Ref"
+  },
+  "Oxford": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/oxford/",
+    "p_control_change": null,
+    "projection": [
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 20,
+        "low": 17,
+        "high": 21
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 9,
+        "low": 7,
+        "high": 9
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 9,
+        "low": 9,
+        "high": 11
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 10,
+        "low": 9,
+        "high": 11
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Basildon": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/basildon/",
+    "p_control_change": null,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 9,
+        "low": 9,
+        "high": 11
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 11,
+        "low": 11,
+        "high": 12
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 13,
+        "low": 10,
+        "high": 13
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 9,
+        "low": 8,
+        "high": 10
+      }
+    ],
+    "winner_central": "Ref"
+  },
+  "Basingstoke & Deane": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/basingstoke_and_deane/",
+    "p_control_change": null,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 9,
+        "low": 8,
+        "high": 12
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 9,
+        "low": 9,
+        "high": 10
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 11,
+        "low": 10,
+        "high": 12
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 2,
+        "low": 2,
+        "high": 2
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 6,
+        "low": 2,
+        "high": 8
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 17,
+        "low": 15,
+        "high": 18
+      }
+    ],
+    "winner_central": "Oth"
+  },
+  "Brentwood": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/brentwood/",
+    "p_control_change": 0.2,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 9,
+        "low": 8,
+        "high": 11
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 2,
+        "low": 2,
+        "high": 2
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 18,
+        "low": 16,
+        "high": 20
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 8,
+        "low": 4,
+        "high": 9
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 2,
+        "low": 2,
+        "high": 2
+      }
+    ],
+    "winner_central": "LD"
+  },
+  "Broxbourne": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/broxbourne/",
+    "p_control_change": null,
+    "majority_threshold": 27,
+    "total_seats": 30,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 27,
+        "low": 24,
+        "high": 27
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 3,
+        "low": 2,
+        "high": 4
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 0,
+        "low": 0,
+        "high": 3
+      }
+    ],
+    "winner_central": "Con"
+  },
+  "Burnley": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/burnley/",
+    "p_control_change": null,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 7,
+        "low": 5,
+        "high": 8
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 10,
+        "low": 10,
+        "high": 13
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 6,
+        "low": 5,
+        "high": 6
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 5,
+        "low": 4,
+        "high": 6
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 8,
+        "low": 5,
+        "high": 10
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 9,
+        "low": 8,
+        "high": 10
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Cambridge": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/cambridge/",
+    "p_control_change": 1.0,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 2,
+        "low": 1,
+        "high": 3
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 17,
+        "low": 15,
+        "high": 19
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 14,
+        "low": 13,
+        "high": 15
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 8,
+        "low": 7,
+        "high": 8
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 1,
+        "low": 1,
+        "high": 1
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Cannock Chase": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/cannock_chase/",
+    "p_control_change": 1.0,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 9,
+        "low": 8,
+        "high": 10
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 11,
+        "low": 11,
+        "high": 12
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 5,
+        "low": 3,
+        "high": 5
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 11,
+        "low": 10,
+        "high": 13
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 0,
+        "low": 0,
+        "high": 0
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Cherwell": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/cherwell/",
+    "p_control_change": null,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 10,
+        "low": 10,
+        "high": 14
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 7,
+        "low": 6,
+        "high": 7
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 20,
+        "low": 17,
+        "high": 20
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 4,
+        "low": 4,
+        "high": 4
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 2,
+        "low": 1,
+        "high": 3
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 5,
+        "low": 4,
+        "high": 5
+      }
+    ],
+    "winner_central": "LD"
+  },
+  "Chorley": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/chorley/",
+    "p_control_change": null,
+    "majority_threshold": 34,
+    "total_seats": 42,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 4,
+        "low": 4,
+        "high": 6
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 34,
+        "low": 32,
+        "high": 35
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 1,
+        "low": 0,
+        "high": 1
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 2,
+        "low": 1,
+        "high": 4
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 1,
+        "low": 1,
+        "high": 1
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Colchester": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/colchester/",
+    "p_control_change": null,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 18,
+        "low": 15,
+        "high": 19
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 12,
+        "low": 11,
+        "high": 13
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 13,
+        "low": 12,
+        "high": 15
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 3,
+        "low": 3,
+        "high": 3
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 4,
+        "low": 2,
+        "high": 8
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 1,
+        "low": 1,
+        "high": 1
+      }
+    ],
+    "winner_central": "Con"
+  },
+  "Crawley": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/crawley/",
+    "p_control_change": 0.04,
+    "majority_threshold": 19,
+    "total_seats": 36,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 7,
+        "low": 6,
+        "high": 9
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 19,
+        "low": 19,
+        "high": 24
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 1,
+        "low": 0,
+        "high": 2
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 9,
+        "low": 3,
+        "high": 9
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Eastleigh": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/eastleigh/",
+    "p_control_change": null,
+    "majority_threshold": 35,
+    "total_seats": 39,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 2,
+        "low": 1,
+        "high": 2
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 35,
+        "low": 33,
+        "high": 36
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 2,
+        "low": 2,
+        "high": 2
+      }
+    ],
+    "winner_central": "LD"
+  },
+  "Epping Forest": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/epping_forest/",
+    "p_control_change": null,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 20,
+        "low": 17,
+        "high": 21
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 1,
+        "low": 1,
+        "high": 2
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 9,
+        "low": 7,
+        "high": 9
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 2,
+        "low": 1,
+        "high": 2
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 4,
+        "low": 4,
+        "high": 8
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 18,
+        "low": 18,
+        "high": 18
+      }
+    ],
+    "winner_central": "Con"
+  },
+  "Exeter": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/exeter/",
+    "p_control_change": 0.99,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 3,
+        "low": 1,
+        "high": 4
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 15,
+        "low": 14,
+        "high": 17
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 4,
+        "low": 4,
+        "high": 4
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 9,
+        "low": 8,
+        "high": 10
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 6,
+        "low": 4,
+        "high": 8
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 2,
+        "low": 2,
+        "high": 2
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Harlow": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/harlow/",
+    "p_control_change": 0.99,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 12,
+        "low": 11,
+        "high": 14
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 10,
+        "low": 10,
+        "high": 12
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 11,
+        "low": 7,
+        "high": 11
+      }
+    ],
+    "winner_central": "Con"
+  },
+  "Hart": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/hart/",
+    "p_control_change": null,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 9,
+        "low": 7,
+        "high": 10
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 12,
+        "low": 12,
+        "high": 14
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 12,
+        "low": 10,
+        "high": 12
+      }
+    ],
+    "winner_central": "LD"
+  },
+  "Havant": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/havant/",
+    "p_control_change": null,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 7,
+        "low": 7,
+        "high": 9
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 7,
+        "low": 7,
+        "high": 8
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 6,
+        "low": 5,
+        "high": 7
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 4,
+        "low": 3,
+        "high": 5
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 9,
+        "low": 6,
+        "high": 10
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 3,
+        "low": 3,
+        "high": 3
+      }
+    ],
+    "winner_central": "Ref"
+  },
+  "Hyndburn": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/hyndburn/",
+    "p_control_change": 0.28,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 8,
+        "low": 7,
+        "high": 10
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 17,
+        "low": 17,
+        "high": 20
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 1,
+        "low": 1,
+        "high": 3
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 9,
+        "low": 3,
+        "high": 9
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 0,
+        "low": 0,
+        "high": 0
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Ipswich": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/ipswich/",
+    "p_control_change": null,
+    "majority_threshold": 27,
+    "total_seats": 48,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 6,
+        "low": 5,
+        "high": 8
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 27,
+        "low": 27,
+        "high": 32
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 3,
+        "low": 3,
+        "high": 3
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 1,
+        "low": 0,
+        "high": 2
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 11,
+        "low": 5,
+        "high": 11
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Lincoln": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/lincoln/",
+    "p_control_change": 0.26,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 2,
+        "low": 2,
+        "high": 4
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 16,
+        "low": 16,
+        "high": 18
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 8,
+        "low": 7,
+        "high": 8
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 5,
+        "low": 2,
+        "high": 5
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 2,
+        "low": 2,
+        "high": 2
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Norwich": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/norwich/",
+    "p_control_change": 0.23,
+    "projection": [
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 15,
+        "low": 14,
+        "high": 16
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 3,
+        "low": 3,
+        "high": 4
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 19,
+        "low": 17,
+        "high": 20
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 2,
+        "low": 1,
+        "high": 4
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 0,
+        "low": 0,
+        "high": 0
+      }
+    ],
+    "winner_central": "Grn"
+  },
+  "Pendle": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/pendle/",
+    "p_control_change": null,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 10,
+        "low": 9,
+        "high": 11
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 8,
+        "low": 7,
+        "high": 8
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 5,
+        "low": 4,
+        "high": 6
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 10,
+        "low": 9,
+        "high": 10
+      }
+    ],
+    "winner_central": "Con"
+  },
+  "Preston": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/preston/",
+    "p_control_change": 0.81,
+    "majority_threshold": 25,
+    "total_seats": 48,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 3,
+        "low": 3,
+        "high": 4
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 25,
+        "low": 22,
+        "high": 25
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 15,
+        "low": 13,
+        "high": 16
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 1,
+        "low": 1,
+        "high": 5
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 2,
+        "low": 0,
+        "high": 4
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 2,
+        "low": 2,
+        "high": 2
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Redditch": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/redditch/",
+    "p_control_change": 0.56,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 3,
+        "low": 3,
+        "high": 6
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 13,
+        "low": 12,
+        "high": 15
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 0,
+        "low": 0,
+        "high": 1
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 8,
+        "low": 4,
+        "high": 8
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 3,
+        "low": 3,
+        "high": 3
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Rochford": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/rochford/",
+    "p_control_change": null,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 7,
+        "low": 7,
+        "high": 9
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 7,
+        "low": 5,
+        "high": 8
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 1,
+        "low": 1,
+        "high": 1
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 10,
+        "low": 7,
+        "high": 12
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 14,
+        "low": 13,
+        "high": 15
+      }
+    ],
+    "winner_central": "Oth"
+  },
+  "Rugby": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/rugby/",
+    "p_control_change": null,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 17,
+        "low": 15,
+        "high": 18
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 12,
+        "low": 12,
+        "high": 15
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 10,
+        "low": 9,
+        "high": 11
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 3,
+        "low": 1,
+        "high": 4
+      }
+    ],
+    "winner_central": "Con"
+  },
+  "Rushmoor": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/rushmoor/",
+    "p_control_change": 0.04,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 7,
+        "low": 7,
+        "high": 10
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 16,
+        "low": 15,
+        "high": 19
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 3,
+        "low": 2,
+        "high": 3
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 1,
+        "low": 1,
+        "high": 2
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 9,
+        "low": 4,
+        "high": 10
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 3,
+        "low": 3,
+        "high": 3
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "St Albans": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/st_albans/",
+    "p_control_change": null,
+    "majority_threshold": 45,
+    "total_seats": 56,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 5,
+        "low": 5,
+        "high": 7
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 2,
+        "low": 2,
+        "high": 3
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 45,
+        "low": 40,
+        "high": 45
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 4,
+        "low": 3,
+        "high": 5
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 0,
+        "low": 0,
+        "high": 1
+      }
+    ],
+    "winner_central": "LD"
+  },
+  "Stevenage": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/stevenage/",
+    "p_control_change": 0.57,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 2,
+        "low": 1,
+        "high": 3
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 18,
+        "low": 18,
+        "high": 21
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 6,
+        "low": 5,
+        "high": 6
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 1,
+        "low": 0,
+        "high": 2
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 12,
+        "low": 8,
+        "high": 12
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Tamworth": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/tamworth/",
+    "p_control_change": 0.99,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 2,
+        "low": 2,
+        "high": 3
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 13,
+        "low": 13,
+        "high": 14
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 1,
+        "low": 1,
+        "high": 1
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 9,
+        "low": 7,
+        "high": 9
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 5,
+        "low": 4,
+        "high": 5
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "Three Rivers": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/three_rivers/",
+    "p_control_change": 0.27,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 12,
+        "low": 11,
+        "high": 14
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 2,
+        "low": 2,
+        "high": 3
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 19,
+        "low": 17,
+        "high": 20
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 3,
+        "low": 3,
+        "high": 3
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 1,
+        "low": 0,
+        "high": 1
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 2,
+        "low": 2,
+        "high": 2
+      }
+    ],
+    "winner_central": "LD"
+  },
+  "Tunbridge Wells": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/tunbridge_wells/",
+    "p_control_change": 0.04,
+    "majority_threshold": 25,
+    "total_seats": 39,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 7,
+        "low": 5,
+        "high": 9
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 3,
+        "low": 3,
+        "high": 4
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 25,
+        "low": 20,
+        "high": 25
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 2,
+        "low": 1,
+        "high": 5
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 2,
+        "low": 2,
+        "high": 4
+      }
+    ],
+    "winner_central": "LD"
+  },
+  "Watford": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/watford/",
+    "p_control_change": null,
+    "majority_threshold": 31,
+    "total_seats": 36,
+    "projection": [
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 5,
+        "low": 4,
+        "high": 5
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 31,
+        "low": 30,
+        "high": 32
+      }
+    ],
+    "winner_central": "LD"
+  },
+  "Welwyn Hatfield": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/welwyn_hatfield/",
+    "p_control_change": null,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 11,
+        "low": 11,
+        "high": 15
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 11,
+        "low": 11,
+        "high": 15
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 14,
+        "low": 12,
+        "high": 15
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 3,
+        "low": 2,
+        "high": 3
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 7,
+        "low": 2,
+        "high": 7
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 2,
+        "low": 2,
+        "high": 2
+      }
+    ],
+    "winner_central": "LD"
+  },
+  "West Lancashire": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/west_lancashire/",
+    "p_control_change": null,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 12,
+        "low": 11,
+        "high": 13
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 18,
+        "low": 16,
+        "high": 19
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 2,
+        "low": 1,
+        "high": 6
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 13,
+        "low": 12,
+        "high": 13
+      }
+    ],
+    "winner_central": "Lab"
+  },
+  "West Oxfordshire": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/west_oxfordshire/",
+    "p_control_change": null,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 13,
+        "low": 12,
+        "high": 17
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 8,
+        "low": 8,
+        "high": 10
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 23,
+        "low": 19,
+        "high": 23
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 4,
+        "low": 3,
+        "high": 4
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 1,
+        "low": 1,
+        "high": 2
+      }
+    ],
+    "winner_central": "LD"
+  },
+  "Winchester": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/winchester/",
+    "p_control_change": null,
+    "majority_threshold": 36,
+    "total_seats": 45,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 5,
+        "low": 5,
+        "high": 7
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 36,
+        "low": 32,
+        "high": 36
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 4,
+        "low": 4,
+        "high": 5
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 0,
+        "low": 0,
+        "high": 0
+      }
+    ],
+    "winner_central": "LD"
+  },
+  "Worthing": {
+    "_url": "https://www.pollcheck.co.uk/council-projections/worthing/",
+    "p_control_change": 0.71,
+    "projection": [
+      {
+        "party_name": "Conservative",
+        "party": "Con",
+        "central": 7,
+        "low": 5,
+        "high": 8
+      },
+      {
+        "party_name": "Labour",
+        "party": "Lab",
+        "central": 18,
+        "low": 15,
+        "high": 20
+      },
+      {
+        "party_name": "Liberal Democrats",
+        "party": "LD",
+        "central": 1,
+        "low": 0,
+        "high": 1
+      },
+      {
+        "party_name": "Green",
+        "party": "Grn",
+        "central": 3,
+        "low": 3,
+        "high": 3
+      },
+      {
+        "party_name": "Reform UK",
+        "party": "Ref",
+        "central": 6,
+        "low": 4,
+        "high": 11
+      },
+      {
+        "party_name": "Others",
+        "party": "Oth",
+        "central": 2,
+        "low": 2,
+        "high": 2
+      }
+    ],
+    "winner_central": "Lab"
+  }
+}

@@ -1,0 +1,14 @@
+# Generated artefacts
+council_tracker.lock
+council_tracker_*.xlsx
+bbc_data.json
+*.pyc
+__pycache__/
+
+# Source data files (large, downloadable)
+le2022.xlsx
+ocd_history.csv
+
+# but DO commit the small JSON caches that are derivative
+!last_seats.json
+!pollcheck.json
