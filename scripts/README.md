@@ -7,6 +7,26 @@
 - `killswitch.py` — Halt mechanism (env var `ODDS_TRADING_HALT=1` OR file `C:\Dev\odds\HALT`)
 - `positions.py` — SQLite position book + fills + heartbeats. CLI: `list`, `mtm`, `pnl`, `open`, `close`
 
+## Information-edge pollers (Week 3)
+- `pollers/scotus.py` — Slip opinion drops on supreme court term page
+- `pollers/nhc.py` — Hurricane advisories from `CurrentStorms.json`
+- `pollers/fda.py` — FDA press-release RSS, auto-linked to PM FDA markets
+- `pollers/daemon.py` — Async orchestrator running all pollers on independent cadences. State persisted in `C:\Dev\odds\data\pollers.sqlite`.
+
+```powershell
+# One-shot all pollers
+python -m pollers.daemon --once
+
+# Daemon mode (until killed)
+python -m pollers.daemon
+```
+
+## Multi-event scanners
+- `tail_decay_scanner.py` — Residual asks on past/near-deadline markets, with auto-execution gates
+- `lp_rewards_scanner.py` — CLOB v2 rewards-eligible markets ranked for solo MM
+- `negrisk_scanner.py` — Sum YES across negRisk events, flag basket arbs
+- `mm_simulator.py` — Paper-mode market maker for a single token
+
 ## Validators (CLOB-aware)
 - `crypto_validator.py` — BTC threshold markets vs Deribit IV
 - `wti_validator.py` — WTI barrier touch vs OVX

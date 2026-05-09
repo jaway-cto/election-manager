@@ -291,6 +291,33 @@ class FilterParams:
     max_spread_vs_edge: float = 0.5  # spread must be <50% of edge magnitude
     min_book_size_shares: float = 100.0  # at least 100 shares on best ask
     max_book_age_seconds: float = 300.0  # 5 min stale = skip
+    # Polymarket fee model (per market.feeSchedule on Gamma — varies by category)
+    # taker_fee_bps: bps charged on taker fills (gets eaten from edge)
+    # rebate_bps: bps rebated to makers (offsets taker fee for market makers)
+    # On the safe side we discount edges by full taker fee unless we'll be a maker.
+    taker_fee_bps: float = 200.0    # 2pp default — actual is 0-700bps per market
+    maker_rebate_bps: float = 0.0   # set if posting maker orders on rewards markets
+
+
+def fees_for_market(market: dict | None) -> tuple[float, float]:
+    """Read taker fee + maker rebate (bps) from a Polymarket market dict.
+    Returns (taker_fee_bps, maker_rebate_bps).
+    """
+    if not market:
+        return (200.0, 0.0)
+    fs = market.get("feeSchedule") or {}
+    rate = float(fs.get("rate") or 0)
+    rebate = float(fs.get("rebateRate") or 0)
+    # Polymarket fee rate is a fraction of trade value (0.07 = 7%, but that's
+    # in bps-of-decimal-price form: 0.07 means 70bps in our convention).
+    # Empirically rate=0.07 corresponds to 70 bps fee.
+    return (rate * 1000.0, rebate * 1000.0)
+
+
+def edge_after_fees(edge_bps_gross: float, taker_fee_bps: float = 200.0,
+                    maker_rebate_bps: float = 0.0) -> float:
+    """Net edge after one-way taker fee. Two-leg arbitrage doubles fees."""
+    return edge_bps_gross - taker_fee_bps + maker_rebate_bps
 
 
 def should_skip(quote: Quote, oi: dict | None, edge_bps_val: float,
@@ -371,7 +398,9 @@ class EdgeRow:
     yes_token: Optional[str] = None
     pm_yes: Optional[float] = None      # market mid or executable price (0-1)
     fair: Optional[float] = None        # model probability (0-1)
-    edge_bps: Optional[float] = None
+    edge_bps: Optional[float] = None    # gross edge
+    edge_bps_net: Optional[float] = None  # after taker fee
+    taker_fee_bps: Optional[float] = None
     action: str = "-"
     spread_bps: Optional[float] = None
     oi_usd: Optional[float] = None
@@ -480,7 +509,17 @@ def evaluate_market(market: dict, fair: float,
     row.edge_bps = eb
     row.action = action
 
+    # Net edge after fees — what actually matters for execution.
+    taker, rebate = fees_for_market(market)
+    row.edge_bps_net = edge_after_fees(eb if eb >= 0 else -abs(eb), taker, rebate)
+    if eb < 0:
+        row.edge_bps_net = -row.edge_bps_net
+    row.taker_fee_bps = taker
+
     skip, reason = should_skip(quote, oi, eb, params)
+    if not skip and abs(row.edge_bps_net) < threshold_bps / 2.0:
+        skip = True
+        reason = f"net edge {row.edge_bps_net:.0f}bps < threshold after fees"
     if skip:
         row.skipped = True
         row.skip_reason = reason
