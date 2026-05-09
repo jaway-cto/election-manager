@@ -28,8 +28,11 @@ from typing import Optional
 import requests
 from scipy.stats import norm
 
+from validator_core import (
+    EdgeRow, evaluate_market, format_table, gamma_event,
+)
+
 EVENT_SLUG = "what-price-will-wti-hit-in-may-2026"
-GAMMA = "https://gamma-api.polymarket.com"
 UA = {"User-Agent": "Mozilla/5.0 (wti-validator)"}
 FRED_KEY = os.environ.get("FRED_API_KEY")
 
@@ -101,12 +104,10 @@ def get_ovx() -> tuple[float, str]:
 
 
 def get_polymarket_event() -> dict:
-    r = requests.get(f"{GAMMA}/events", params={"slug": EVENT_SLUG}, timeout=15)
-    r.raise_for_status()
-    data = r.json()
-    if not data:
+    ev = gamma_event(EVENT_SLUG)
+    if not ev:
         raise RuntimeError(f"event slug not found: {EVENT_SLUG}")
-    return data[0]
+    return ev
 
 
 # -------------------- parsing --------------------
@@ -121,71 +122,69 @@ def parse_market(m: dict) -> Optional[dict]:
         return None
     direction = "UP" if match.group(1).upper() == "HIGH" else "DOWN"
     strike = float(match.group(2))
-    # outcomePrices is JSON-encoded list "[yes, no]"; first element = YES probability
-    raw = m.get("outcomePrices") or "[]"
-    try:
-        import json
-        prices = json.loads(raw) if isinstance(raw, str) else raw
-        yes = float(prices[0])
-    except Exception:
-        return None
     end = m.get("endDate")
-    # closed/resolved markets aren't tradeable; YES=1.0 with closed=true means
-    # the touch already happened. Skip them — our forward GBM has no info on
-    # the realised path so the comparison is meaningless.
     if m.get("closed") or m.get("archived"):
         return None
     return {
-        "question": q,
-        "strike": strike,
-        "direction": direction,
-        "yes": yes,
-        "end": end,
-        "slug": m.get("slug"),
+        "question": q, "strike": strike, "direction": direction,
+        "end": end, "slug": m.get("slug"), "_market": m,
     }
 
 
 # -------------------- main scan --------------------
 
-def scan_wti_markets(edge_threshold: float = 0.02) -> list[dict]:
+def scan_wti_markets(edge_threshold: float = 0.02) -> list[EdgeRow]:
     spot, spot_src = get_spot()
     ovx, ovx_src = get_ovx()
-    sigma = ovx / 100.0  # OVX is annualised vol in percentage points
+    sigma = ovx / 100.0
 
     event = get_polymarket_event()
-    rows = [r for r in (parse_market(m) for m in event.get("markets", [])) if r]
-    if not rows:
+    parsed = [r for r in (parse_market(m) for m in event.get("markets", [])) if r]
+    if not parsed:
         print("no rows parsed from event"); return []
 
     now = datetime.now(timezone.utc)
-    end = max(datetime.fromisoformat(r["end"].replace("Z", "+00:00")) for r in rows)
+    end = max(datetime.fromisoformat(r["end"].replace("Z", "+00:00")) for r in parsed)
     days = max((end - now).total_seconds() / 86400.0, 0.0)
     T = days / 365.0
 
     print(f"\nAs of {now.isoformat(timespec='seconds')}")
     print(f"Spot WTI : ${spot:6.2f}  ({spot_src})")
     print(f"OVX      :  {ovx:5.2f}   sigma={sigma:.3f}  ({ovx_src})")
-    print(f"Days to expiry: {days:.2f}  (T={T:.4f}y)\n")
+    print(f"Days to expiry: {days:.2f}\n")
 
-    hdr = f"{'Strike':>7} {'Dir':<5} {'Days':>5} {'Spot':>7} {'OVX':>6} {'PM YES':>7} {'Fair':>6} {'Edge':>7}  Action"
-    print(hdr); print("-" * len(hdr))
-
-    out = []
-    for r in sorted(rows, key=lambda x: (x["direction"], x["strike"])):
+    rows: list[EdgeRow] = []
+    for r in sorted(parsed, key=lambda x: (x["direction"], x["strike"])):
         fair = touch_prob(spot, r["strike"], T, sigma)
-        edge = fair - r["yes"]      # +ve => PM under-pricing YES => BUY YES
-        if abs(edge) < edge_threshold:
-            action = "-"
-        elif edge > 0:
-            action = "BUY YES"
-        else:
-            action = "SELL YES"
-        flag = " *" if abs(edge) >= edge_threshold else "  "
-        print(f"${r['strike']:>5.0f} {r['direction']:<5} {days:>5.1f} ${spot:>6.2f} {ovx:>6.2f} "
-              f"{r['yes']*100:>6.1f}% {fair*100:>5.1f}% {edge*100:>+5.1f}pp  {action}{flag}")
-        out.append({**r, "fair": fair, "edge": edge, "action": action})
-    print("\n* = edge >= {:.0f}pp threshold".format(edge_threshold * 100))
-    return out
+        # Try buy side first; if PM looks rich vs fair, evaluate as sell.
+        side = "buy"
+        row = evaluate_market(
+            r["_market"], fair=fair, side=side,
+            threshold_bps=int(edge_threshold * 10000),
+            validator_name="wti",
+            market_label=f"WTI {r['direction']} ${r['strike']:.0f} ({days:.0f}d)",
+        )
+        if row.edge_bps is not None and row.edge_bps < 0:
+            row = evaluate_market(
+                r["_market"], fair=fair, side="sell",
+                threshold_bps=int(edge_threshold * 10000),
+                validator_name="wti",
+                market_label=f"WTI {r['direction']} ${r['strike']:.0f} ({days:.0f}d)",
+            )
+        if row.pm_yes is None or row.pm_yes >= 0.999 or row.pm_yes <= 0.001:
+            continue
+        rows.append(row)
+
+    rows.sort(key=lambda x: -abs(x.edge_bps or 0))
+    print(format_table(rows, title="wti_validator (CLOB-aware)"))
+    flagged = [r for r in rows if r.edge_bps and abs(r.edge_bps) >= edge_threshold * 10000 and not r.skipped]
+    skipped = [r for r in rows if r.skipped]
+    print(f"{len(flagged)} actionable / {len(rows)} markets.  ({len(skipped)} skipped for liquidity/spread.)")
+    if skipped:
+        print("\nSkipped (would-be edges, but unexecutable):")
+        for r in skipped[:5]:
+            print(f"  {r.market[:50]:<50}  edge={(r.edge_bps or 0)/100:+.1f}pp   {r.skip_reason}")
+    return rows
 
 
 def main() -> None:

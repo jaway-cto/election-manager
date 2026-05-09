@@ -17,6 +17,10 @@ from typing import Optional
 
 import requests
 
+from validator_core import (
+    EdgeRow, FilterParams, evaluate_market, format_table, gamma_event,
+)
+
 try:
     from scipy.stats import norm
     _ncdf = norm.cdf
@@ -26,7 +30,6 @@ except ImportError:
 
 DERIBIT = "https://www.deribit.com/api/v2/public/get_book_summary_by_currency"
 BINANCE = "https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT"
-GAMMA_EVENT = "https://gamma-api.polymarket.com/events?slug={slug}"
 
 # Threshold-event slugs to monitor (BTC only — IV pulled from BTC chain)
 EVENT_SLUGS = [
@@ -122,13 +125,13 @@ THRESH_RE = re.compile(
 
 
 def parse_market(m: dict) -> Optional[dict]:
+    """Parse strike + direction; price comes from CLOB at evaluation time."""
     q = m.get("question", "")
     mm = THRESH_RE.search(q)
     if not mm:
         return None
     verb, num = mm.group(1).lower(), mm.group(2).replace(",", "")
     raw = float(num)
-    # heuristic: 'k' suffix or value < 1000 => thousands
     if "k" in q.lower().split(num)[-1][:2] or raw < 1000:
         strike = raw * 1000
     else:
@@ -137,84 +140,78 @@ def parse_market(m: dict) -> Optional[dict]:
     if not end_iso:
         return None
     end = datetime.fromisoformat(end_iso.replace("Z", "+00:00"))
-    prices = m.get("outcomePrices")
-    if isinstance(prices, str):
-        import json
-        prices = json.loads(prices)
-    if not prices:
-        return None
-    yes = float(prices[0])
     direction = "down" if verb == "dip to" else "up"
     return {
         "question": q,
         "strike": strike,
         "end": end,
-        "yes": yes,
         "direction": direction,
         "active": m.get("active", True) and not m.get("closed", False),
+        "_market": m,  # keep raw market dict for CLOB lookup
     }
 
 
-def scan_crypto_markets() -> list[dict]:
+def scan_crypto_markets() -> list[EdgeRow]:
     spot, opts = fetch_deribit_chain()
     binance = fetch_binance_spot()
     now = datetime.now(timezone.utc)
-    rows: list[dict] = []
+    rows: list[EdgeRow] = []
 
     for slug in EVENT_SLUGS:
-        try:
-            markets = fetch_event(slug)
-        except Exception as e:
-            print(f"  ! fetch {slug}: {e}", file=sys.stderr)
+        ev = gamma_event(slug)
+        if not ev:
+            print(f"  ! fetch {slug}: no event", file=sys.stderr)
             continue
-        for m in markets:
+        for m in ev.get("markets", []):
             p = parse_market(m)
             if not p or not p["active"]:
                 continue
             days = (p["end"] - now).total_seconds() / 86400.0
             if days <= 0:
                 continue
-            # Skip degenerate already-touched markets (YES=1 or 0)
-            if p["yes"] >= 0.999 or p["yes"] <= 0.001:
-                continue
             iv = atm_iv(opts, spot, p["end"])
             if iv is None:
                 continue
-            # 'dip to' = touch below; 'reach/hit' = touch above
             if p["direction"] == "down" and p["strike"] >= spot:
                 continue
             if p["direction"] == "up" and p["strike"] <= spot:
                 continue
             fair = fair_touch(spot, p["strike"], days, iv)
-            edge = fair - p["yes"]
-            action = "-"
-            if abs(edge) > 0.02:
-                action = "BUY YES" if edge > 0 else "BUY NO"
-            rows.append({
-                "q": p["question"][:34],
-                "strike": p["strike"],
-                "days": days,
-                "spot": spot,
-                "iv": iv,
-                "yes": p["yes"],
-                "fair": fair,
-                "edge": edge,
-                "action": action,
-            })
+            # Side preference: BUY YES if fair > market (we expect we'll need ask);
+            # SELL YES if fair < market (we'd need bid). Pre-eval at mid first.
+            row = evaluate_market(
+                p["_market"], fair=fair, side="buy",
+                threshold_bps=200, validator_name="crypto",
+                market_label=f"{p['question'][:36]} (K=${p['strike']:,.0f}, "
+                             f"{days:.0f}d, IV={iv:.0%})",
+            )
+            # Re-evaluate with sell side if edge is negative (sell YES)
+            if row.edge_bps is not None and row.edge_bps < 0:
+                row = evaluate_market(
+                    p["_market"], fair=fair, side="sell",
+                    threshold_bps=200, validator_name="crypto",
+                    market_label=f"{p['question'][:36]} (K=${p['strike']:,.0f}, "
+                                 f"{days:.0f}d, IV={iv:.0%})",
+                )
+            # Skip degenerate already-touched markets
+            if row.pm_yes is None or row.pm_yes >= 0.999 or row.pm_yes <= 0.001:
+                continue
+            rows.append(row)
 
     print(f"\nDeribit spot: ${spot:,.0f}   Binance: "
           f"{'$%.0f' % binance if binance else 'n/a'}   "
           f"{now:%Y-%m-%d %H:%M UTC}\n")
-    hdr = f"{'Market':<36}{'Strike':>8}{'Days':>6}{'IV':>7}{'PM':>8}{'Fair':>8}{'Edge':>8}  Action"
-    print(hdr)
-    print("-" * len(hdr))
-    rows.sort(key=lambda r: -abs(r["edge"]))
-    for r in rows:
-        print(f"{r['q']:<36}{r['strike']:>8.0f}{r['days']:>6.0f}"
-              f"{r['iv']:>7.2f}{r['yes']*100:>7.1f}%{r['fair']*100:>7.1f}%"
-              f"{r['edge']*100:>+7.1f}pp  {r['action']}")
-    flagged = [r for r in rows if abs(r["edge"]) > 0.02]
-    print(f"\n{len(flagged)} flagged of {len(rows)} markets (|edge| > 2pp).")
+    rows.sort(key=lambda r: -abs(r.edge_bps or 0))
+    print(format_table(rows, title="crypto_validator (CLOB-aware)"))
+    flagged = [r for r in rows if r.edge_bps and abs(r.edge_bps) >= 200 and not r.skipped]
+    skipped_for_liq = [r for r in rows if r.skipped]
+    print(f"{len(flagged)} actionable / {len(rows)} markets.  "
+          f"({len(skipped_for_liq)} filtered out for liquidity/spread.)")
+    if skipped_for_liq:
+        print("\nSkipped (would-be edges, but unexecutable):")
+        for r in skipped_for_liq[:6]:
+            ed = (r.edge_bps or 0) / 100
+            print(f"  {r.market[:60]:<60}  edge={ed:+.1f}pp   reason: {r.skip_reason}")
     return rows
 
 

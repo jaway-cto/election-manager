@@ -202,7 +202,7 @@ def nick(team: str) -> str:
     return TEAM_NICKS.get(t, t.split()[-1] if t else t)
 
 
-def match_pm(game: Game, pm_items: Iterable[dict]) -> tuple[float, str] | None:
+def match_pm(game: Game, pm_items: Iterable[dict]) -> tuple[float, str, dict] | None:
     h, a = nick(game.home), nick(game.away)
     # Prefer non-series, non-closed markets whose slug looks like a single game
     def score(it: dict) -> int:
@@ -252,11 +252,11 @@ def match_pm(game: Game, pm_items: Iterable[dict]) -> tuple[float, str] | None:
             for o, p in zip(outcomes, prices):
                 if h in str(o).lower():
                     try:
-                        return float(p), slug
+                        return float(p), slug, it
                     except (TypeError, ValueError):
                         pass
             try:
-                return float(prices[0]), slug
+                return float(prices[0]), slug, it
             except (TypeError, ValueError):
                 pass
         # nested markets list (events) — pick the plain game ML market
@@ -268,7 +268,7 @@ def match_pm(game: Game, pm_items: Iterable[dict]) -> tuple[float, str] | None:
                 continue
             res = match_pm_market(sub, h)
             if res:
-                return res[0], slug or sub.get("slug", "")
+                return res[0], slug or sub.get("slug", ""), sub
     return None
 
 
@@ -291,6 +291,31 @@ def match_pm_market(m: dict, home_nick: str) -> tuple[float, str] | None:
             except Exception:
                 return None
     return None
+
+
+# CLOB enrichment for NBA markets
+def _nba_clob_quote(market: dict, home_nick: str):
+    """Fetch CLOB quote for the home team's YES token. Returns Quote or None."""
+    try:
+        from validator_core import get_quote, parse_clob_token_ids
+    except ImportError:
+        return None
+    yes_tok, no_tok = parse_clob_token_ids(market)
+    # The yes token might correspond to home or away depending on outcomes order.
+    # Use outcomes to figure out which token is the home team.
+    import json as _j
+    outcomes = market.get("outcomes")
+    if isinstance(outcomes, str):
+        try:
+            outcomes = _j.loads(outcomes)
+        except Exception:
+            outcomes = None
+    if outcomes and len(outcomes) >= 2:
+        if home_nick in str(outcomes[0]).lower():
+            return get_quote(yes_tok) if yes_tok else None
+        if home_nick in str(outcomes[1]).lower():
+            return get_quote(no_tok) if no_tok else None
+    return get_quote(yes_tok) if yes_tok else None
 
 
 # ---------- Scan ----------
@@ -316,32 +341,48 @@ def scan_nba() -> None:
         match = match_pm(g, pm)
         pm_h = match[0] if match else None
         slug = match[1] if match else ""
-        # ESPN status lookup
+        market = match[2] if match and len(match) > 2 else None
+        # CLOB upgrade: if we have the market dict, fetch executable price + spread.
+        spread_bps = None
+        if market is not None:
+            quote = _nba_clob_quote(market, nick(g.home))
+            if quote and quote.has_book:
+                # Use ask if buying home (edge positive), bid if selling.
+                # Edge sign computed below; for now grab spread + use mid as "PM price".
+                spread_bps = quote.spread_bps
+                if quote.mid is not None:
+                    pm_h = quote.mid
         key = f"{g.away} at {g.home}".lower()
         status = espn.get(key, "")
         edge = (fair_h - pm_h) if pm_h is not None else None
 
         matchup = f"{g.away} @ {g.home}"
         bov_str = f"{fair_h*100:>10.1f}%"
+        sp_str = f"{spread_bps:.0f}bp" if spread_bps is not None else "  -  "
         if pm_h is None:
-            pm_str = f"{'—':>11}"
-            edge_str = f"{'—':>9}"
+            pm_str = f"{'-':>11}"
+            edge_str = f"{'-':>9}"
             signal = "no PM market matched"
         else:
             pm_str = f"{pm_h*100:>10.1f}%"
             edge_str = f"{edge*100:>+8.1f}pp"
             if abs(edge) > EDGE_FLAG:
                 if edge > 0:
-                    signal = f"BUY {nick(g.home)} YES on PM (Bov fair > PM)"
+                    base = f"BUY {nick(g.home)} YES on PM (Bov fair > PM)"
                 else:
-                    signal = f"BUY {nick(g.away)} (PM home overpriced)"
+                    base = f"BUY {nick(g.away)} (PM home overpriced)"
+                edge_bps = abs(edge) * 10000
+                if spread_bps and spread_bps > edge_bps * 0.5:
+                    signal = base + f" -- SPREAD EATS EDGE"
+                else:
+                    signal = "** " + base
             else:
                 signal = "no edge"
             if slug:
                 signal += f" [{slug[:40]}]"
         if status:
             signal = f"{status} | {signal}"
-        print(f"{matchup:<38}{bov_str:>12}{pm_str:>12}{edge_str:>10}  {signal}")
+        print(f"{matchup:<38}{bov_str:>12}{pm_str:>12}{edge_str:>10}{sp_str:>7}  {signal}")
 
 
 def main() -> None:

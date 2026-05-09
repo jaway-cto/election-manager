@@ -21,12 +21,16 @@ import re
 import sys
 import time
 import urllib.request
-from typing import Dict
+from typing import Dict, Optional
+
+from validator_core import gamma_event, get_quote, parse_clob_token_ids
 
 PM_SLUG = "eurovision-winner-2026"
-PM_URL = f"https://gamma-api.polymarket.com/events?slug={PM_SLUG}"
 EVW_URL = "https://eurovisionworld.com/odds/eurovision"
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+
+# Per-country CLOB metadata captured during fetch_polymarket; consumed for spread filtering.
+_PM_QUOTES: Dict[str, dict] = {}
 
 
 def _get(url: str) -> str:
@@ -36,12 +40,16 @@ def _get(url: str) -> str:
 
 
 def fetch_polymarket() -> Dict[str, float]:
-    """Return {country: yes_price} for named country markets only."""
-    data = json.loads(_get(PM_URL))
-    if not data:
+    """Return {country: yes_price_clob_ask} for named country markets.
+
+    Uses CLOB best ask (executable BUY price). Falls back to mid then snapshot.
+    Also populates _PM_QUOTES with bid/ask/spread for downstream filtering.
+    """
+    event = gamma_event(PM_SLUG)
+    if not event:
         raise RuntimeError(f"Polymarket: empty response for slug {PM_SLUG}")
-    event = data[0]
     out: Dict[str, float] = {}
+    _PM_QUOTES.clear()
     pat = re.compile(r"^Will (.+?) win Eurovision 2026\?$")
     for m in event.get("markets", []):
         q = m.get("question", "")
@@ -50,18 +58,32 @@ def fetch_polymarket() -> Dict[str, float]:
             continue
         country = mt.group(1).strip()
         if country.lower().startswith("country ") or country.lower().startswith("another"):
-            continue  # placeholders
-        op = m.get("outcomePrices")
-        if not op:
             continue
-        try:
-            prices = json.loads(op) if isinstance(op, str) else op
-            yes = float(prices[0])
-        except (ValueError, TypeError, IndexError):
+        yes_tok, _ = parse_clob_token_ids(m)
+        quote = get_quote(yes_tok) if yes_tok else None
+        # Pick price: ask (executable BUY) > mid > stale snapshot
+        price: Optional[float] = None
+        if quote and quote.ask is not None:
+            price = quote.ask
+        elif quote and quote.mid is not None:
+            price = quote.mid
+        else:
+            try:
+                op = m.get("outcomePrices") or "[]"
+                prices = json.loads(op) if isinstance(op, str) else op
+                price = float(prices[0])
+            except Exception:
+                continue
+        if price is None or price <= 0:
             continue
-        if yes <= 0:
-            continue
-        out[country] = yes
+        out[country] = price
+        _PM_QUOTES[country] = {
+            "bid": quote.bid if quote else None,
+            "ask": quote.ask if quote else None,
+            "mid": quote.mid if quote else None,
+            "spread_bps": quote.spread_bps if quote else None,
+            "market_id": m.get("id"),
+        }
     return out
 
 
@@ -157,25 +179,34 @@ def scan_eurovision() -> None:
     print(f"Source — Polymarket: live  |  Aggregator: {src_note}")
     print(f"Overround — PM raw sum: {pm_overround:.3f}  |  Aggregator implied sum: {mk_overround:.3f}")
     print()
-    print(f"{'Country':<18}{'PM':>7}{'Mkt':>8}{'Edge':>8}  Action")
-    print("-" * 70)
+    print(f"{'Country':<18}{'PM':>7}{'Mkt':>8}{'Edge':>8}{'Spr':>7}  Action")
+    print("-" * 80)
+    flagged_actionable = 0
     for c in intersect:
         pm = pm_dv[c] * 100
         mk = mk_dv[c] * 100
         e = edges[c]
-        if abs(e) < 2.0:
-            action = "."
-        elif e > 0:
-            action = f"** PM rich  ->  SELL YES  ({e:+.1f}pp)"
-        else:
-            action = f"** PM cheap ->  BUY  YES  ({e:+.1f}pp)"
-        print(f"{c:<18}{pm:>6.1f}%{mk:>7.1f}%{e:>+7.1f}pp  {action}")
+        q = _PM_QUOTES.get(c, {})
+        sp = q.get("spread_bps")
+        sp_s = f"{sp:.0f}bp" if sp is not None else "  n/a"
+        edge_bps_v = abs(e) * 100  # 1pp = 100bps
+        action = "."
+        if abs(e) >= 2.0:
+            verdict = "PM rich  ->  SELL YES" if e > 0 else "PM cheap ->  BUY  YES"
+            if sp is not None and sp > edge_bps_v * 0.5:
+                action = f"   {verdict} ({e:+.1f}pp)  -- SPREAD EATS EDGE ({sp:.0f}bp)"
+            elif sp is not None and sp > 500:
+                action = f"   {verdict} ({e:+.1f}pp)  -- WIDE SPREAD ({sp:.0f}bp)"
+            else:
+                action = f"** {verdict} ({e:+.1f}pp)"
+                flagged_actionable += 1
+        print(f"{c:<18}{pm:>6.1f}%{mk:>7.1f}%{e:>+7.1f}pp {sp_s:>7}  {action}")
     if only_pm:
         print(f"\nOnly on Polymarket: {', '.join(only_pm)}")
     if only_mk:
         print(f"Only on aggregator: {', '.join(only_mk)}")
     flagged = [c for c in intersect if abs(edges[c]) >= 2.0]
-    print(f"\n{len(flagged)} edge(s) >= 2pp flagged.")
+    print(f"\n{len(flagged)} edge(s) >= 2pp seen, {flagged_actionable} actionable after spread filter.")
 
 
 def main() -> None:

@@ -27,11 +27,16 @@ import urllib.request
 import urllib.parse
 from typing import Dict, List, Optional, Tuple
 
+from validator_core import gamma_event, get_quote, parse_clob_token_ids
+
 UA = "Mozilla/5.0 (compatible; french-pres-validator/1.0)"
 PM_SLUG = "next-french-presidential-election"
 SM_EVENT = "42702202"
 SM_MARKET = "23982189"
 WIKI_URL = "https://en.wikipedia.org/wiki/Opinion_polling_for_the_2027_French_presidential_election"
+
+# Per-candidate CLOB metadata captured during fetch_polymarket
+_PM_QUOTES: Dict[str, dict] = {}
 
 
 def http_get(url: str, timeout: int = 20) -> bytes:
@@ -48,25 +53,38 @@ def normalize_name(s: str) -> str:
 
 # ---------- Polymarket ----------
 def fetch_polymarket() -> Dict[str, float]:
-    url = f"https://gamma-api.polymarket.com/events?slug={PM_SLUG}"
-    data = json.loads(http_get(url))
-    if not data:
+    """Per-candidate YES price from CLOB best ask (executable). Captures spread for filtering."""
+    ev = gamma_event(PM_SLUG)
+    if not ev:
         raise RuntimeError("Polymarket: empty response for slug")
-    ev = data[0]
     out: Dict[str, float] = {}
+    _PM_QUOTES.clear()
     for m in ev.get("markets", []):
         name = m.get("groupItemTitle") or m.get("question") or ""
         if not name or name.lower().startswith("person "):
             continue
-        p = m.get("lastTradePrice")
-        if p is None:
-            try:
-                p = float(json.loads(m.get("outcomePrices") or "[0]")[0])
-            except Exception:
-                p = None
+        yes_tok, _ = parse_clob_token_ids(m)
+        quote = get_quote(yes_tok) if yes_tok else None
+        p: Optional[float] = None
+        if quote and quote.ask is not None:
+            p = quote.ask
+        elif quote and quote.mid is not None:
+            p = quote.mid
+        else:
+            p = m.get("lastTradePrice")
+            if p is None:
+                try:
+                    p = float(json.loads(m.get("outcomePrices") or "[0]")[0])
+                except Exception:
+                    p = None
         if p is None:
             continue
         out[name] = float(p)
+        _PM_QUOTES[name] = {
+            "bid": quote.bid if quote else None,
+            "ask": quote.ask if quote else None,
+            "spread_bps": quote.spread_bps if quote else None,
+        }
     return out
 
 
@@ -154,16 +172,24 @@ def scan_french_pres(verbose: bool = True) -> List[dict]:
 
         edge_pp = None
         action = ""
+        spread_bps = (_PM_QUOTES.get(name, {}) or {}).get("spread_bps")
         if sm_p is not None:
             edge_pp = (pm_p - sm_p) * 100
             if abs(edge_pp) >= 3:
-                action = (f"PM cheap vs Smarkets ({edge_pp:+.1f}pp)" if edge_pp < 0
-                          else f"PM rich vs Smarkets ({edge_pp:+.1f}pp)")
+                base = (f"PM cheap vs Smarkets ({edge_pp:+.1f}pp)" if edge_pp < 0
+                        else f"PM rich vs Smarkets ({edge_pp:+.1f}pp)")
+                if spread_bps is not None and spread_bps > abs(edge_pp) * 100 * 0.5:
+                    action = base + f"  -- SPREAD EATS EDGE ({spread_bps:.0f}bp)"
+                elif spread_bps is not None and spread_bps > 500:
+                    action = base + f"  -- WIDE SPREAD ({spread_bps:.0f}bp)"
+                else:
+                    action = "** " + base
         rows.append({
             "candidate": name,
             "pm": pm_p, "pm_raw": pm_raw[name],
             "sm": sm_p, "sm_raw": sm_raw_p,
             "poll": poll_p, "edge_pp": edge_pp, "action": action,
+            "spread_bps": spread_bps,
         })
 
     if verbose:
@@ -172,15 +198,16 @@ def scan_french_pres(verbose: bool = True) -> List[dict]:
         print(f"PM raw sum: {sum(pm_raw.values()):.3f} (devigged) | "
               f"SM priced sum: {sum(sm_priced.values()):.3f} ({len(sm_priced)} contracts) | "
               f"Polling rows: {len(poll)}")
-        print(f"\n{'Candidate':<24}{'PM':>8}{'SM(ask)':>10}{'SM_fair':>10}{'Poll(1R)':>10}{'Edge':>9}  Action")
-        print("-" * 100)
+        print(f"\n{'Candidate':<24}{'PM':>8}{'SM(ask)':>10}{'SM_fair':>10}{'Poll(1R)':>10}{'Edge':>9}{'Spr':>8}  Action")
+        print("-" * 110)
         for r in rows:
             pm = f"{r['pm']*100:.1f}%"
-            sm_raw_s = f"{r['sm_raw']*100:.1f}%" if r['sm_raw'] is not None else "  —  "
-            sm_s = f"{r['sm']*100:.1f}%" if r['sm'] is not None else "  —  "
-            pl = f"{r['poll']:.1f}%" if r['poll'] is not None else "  —  "
-            ed = f"{r['edge_pp']:+.1f}pp" if r['edge_pp'] is not None else "  —  "
-            print(f"{r['candidate']:<24}{pm:>8}{sm_raw_s:>10}{sm_s:>10}{pl:>10}{ed:>9}  {r['action']}")
+            sm_raw_s = f"{r['sm_raw']*100:.1f}%" if r['sm_raw'] is not None else "  -  "
+            sm_s = f"{r['sm']*100:.1f}%" if r['sm'] is not None else "  -  "
+            pl = f"{r['poll']:.1f}%" if r['poll'] is not None else "  -  "
+            ed = f"{r['edge_pp']:+.1f}pp" if r['edge_pp'] is not None else "  -  "
+            sp = f"{r['spread_bps']:.0f}bp" if r['spread_bps'] is not None else "  -  "
+            print(f"{r['candidate']:<24}{pm:>8}{sm_raw_s:>10}{sm_s:>10}{pl:>10}{ed:>9}{sp:>8}  {r['action']}")
         flagged = [r for r in rows if r["action"]]
         print(f"\nFlagged (|edge| >= 3pp on cross-venue, devigged): {len(flagged)}")
         if not sm_priced:
