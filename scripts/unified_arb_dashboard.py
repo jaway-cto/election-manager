@@ -58,12 +58,35 @@ def _load_validators() -> list[tuple[str, Callable]]:
         sys.stderr.write(f"macro_validator import failed: {e}\n")
     try:
         from sports_validator import scan_sport
-        # Default to NBA; the user can fan out manually for other sports.
         import os
         if os.environ.get("THE_ODDS_API_KEY"):
             out.append(("sports-nba", lambda: scan_sport("basketball_nba")))
     except Exception as e:
         sys.stderr.write(f"sports_validator import failed: {e}\n")
+    try:
+        from tail_decay_scanner import scan as scan_tail_decay
+        from validator_core import EdgeRow
+        def _tail_as_edges() -> list:
+            rows = scan_tail_decay(max_days=7, min_ask=0.92, max_ask=0.995)
+            out_rows = []
+            for r in rows:
+                out_rows.append(EdgeRow(
+                    validator="tail-decay",
+                    market=("[PAST] " if r["past_deadline"] else "") +
+                           (r["question"] or "")[:50],
+                    market_id=str(r["market_id"]) if r["market_id"] else None,
+                    yes_token=r["token"],
+                    pm_yes=r["ask"], fair=1.0,
+                    edge_bps=(1.0 - r["ask"]) * 10000,
+                    action=f"BUY {r['side_label']} @ {r['ask']:.3f}",
+                    spread_bps=r["spread_bps"],
+                    oi_usd=r["volume_24h"],
+                    note="past-deadline" if r["past_deadline"] else "",
+                ))
+            return out_rows
+        out.append(("tail-decay", _tail_as_edges))
+    except Exception as e:
+        sys.stderr.write(f"tail_decay_scanner import failed: {e}\n")
     return out
 
 
