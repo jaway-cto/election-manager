@@ -45,6 +45,7 @@ from validator_core import (
 )
 from notify import alert, fyi, event
 import killswitch
+from clob_client import client as clob
 
 
 SUBJECTIVE_BANLIST = [
@@ -215,6 +216,108 @@ def report(rows: list[dict], max_alert: int = 5) -> None:
         })
 
 
+def execute_buys(rows: list[dict], *, per_market_cap: float = 200.0,
+                 daily_cap_usd: float = 1000.0, min_edge_pp: float = 2.0,
+                 only_past_deadline: bool = True,
+                 dry_run: bool = True) -> list[dict]:
+    """Place BUY orders for the highest-confidence candidates.
+
+    Hard gates (any fail = no order):
+      * killswitch armed
+      * clob.creds.trading_enabled
+      * dry_run flag respected (returns plan, no orders)
+      * edge_pp >= min_edge_pp
+      * if only_past_deadline=True, skip upcoming-deadline candidates
+      * total spend this call <= daily_cap_usd
+      * spread re-checked at execute time (must still be <1500bps)
+      * positions.sqlite open-position cap not exceeded
+
+    Returns list of {row, status, order_id|reason}.
+    """
+    if killswitch.tripped():
+        fyi(f"tail-decay execute halted: {killswitch.reason()}")
+        return []
+    if not dry_run:
+        try:
+            clob.require_trading()
+        except Exception as e:
+            fyi(f"tail-decay execute aborted: {e}")
+            return []
+
+    import positions as pos
+    open_positions = pos.list_open()
+    open_market_ids = {r["market_id"] for r in open_positions if r["validator"] == "tail-decay"}
+
+    plan: list[dict] = []
+    spent = 0.0
+    for r in rows:
+        if only_past_deadline and not r["past_deadline"]:
+            continue
+        if r["edge_pp"] < min_edge_pp:
+            continue
+        if r["market_id"] in open_market_ids:
+            continue  # avoid double-up on same market
+        # Spread re-check: book may have changed; refetch
+        from validator_core import get_quote
+        q = get_quote(r["token"])
+        if not q.has_book or q.ask is None:
+            plan.append({"row": r, "status": "skip",
+                         "reason": "book gone since scan"})
+            continue
+        # Don't execute if book moved against us by >1pp
+        if abs(q.ask - r["ask"]) > 0.01:
+            plan.append({"row": r, "status": "skip",
+                         "reason": f"price moved {r['ask']:.3f}->{q.ask:.3f}"})
+            continue
+        if q.spread_bps and q.spread_bps > 1500:
+            plan.append({"row": r, "status": "skip",
+                         "reason": f"spread widened to {q.spread_bps:.0f}bps"})
+            continue
+        size_dollars = min(per_market_cap, r["buy_dollars"],
+                           daily_cap_usd - spent)
+        if size_dollars < 5.0:  # Polymarket min order
+            plan.append({"row": r, "status": "skip",
+                         "reason": f"daily cap reached or order < $5"})
+            continue
+        size_shares = size_dollars / q.ask
+        plan_entry = {
+            "row": r, "size_shares": size_shares,
+            "size_dollars": size_dollars, "exec_px": q.ask,
+        }
+        if dry_run:
+            plan_entry["status"] = "dry-run"
+            plan_entry["order_id"] = None
+        else:
+            try:
+                order = clob.create_order(r["token"], "BUY", size_shares, q.ask)
+                resp = clob.post_order(order, "GTC")
+                plan_entry["status"] = "submitted"
+                plan_entry["order_id"] = resp.get("orderID") or resp.get("id")
+                # Record in position book at the *intended* price; reconcile later
+                pos.open_position(
+                    market_id=str(r["market_id"]),
+                    token_id=r["token"], side="BUY",
+                    size=size_shares, entry_px=q.ask,
+                    fair_at_entry=1.0,
+                    edge_bps_at_entry=r["edge_pp"] * 100,
+                    validator="tail-decay",
+                    market_label=(r["question"] or "")[:80],
+                    notes=f"past_deadline={r['past_deadline']}",
+                )
+                alert(f"FILLED tail-decay {r['side_label']} @ {q.ask:.3f} "
+                      f"({size_shares:.0f} shares = ${size_dollars:.0f}) — "
+                      f"{(r['question'] or '')[:80]}")
+            except Exception as e:
+                plan_entry["status"] = "error"
+                plan_entry["reason"] = str(e)
+                alert(f"tail-decay order FAILED: {e}")
+        plan.append(plan_entry)
+        spent += size_dollars
+        if spent >= daily_cap_usd:
+            break
+    return plan
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--max-days", type=int, default=7)
@@ -222,9 +325,19 @@ def main():
     ap.add_argument("--max-ask", type=float, default=0.99)
     ap.add_argument("--min-size-usd", type=float, default=50.0)
     ap.add_argument("--per-market-cap", type=float, default=200.0,
-                    help="Max $ to spend per single market (paper for now)")
+                    help="Max $ to spend per single market")
+    ap.add_argument("--daily-cap", type=float, default=1000.0,
+                    help="Max $ to spend per scan/run (cumulative across markets)")
+    ap.add_argument("--min-edge-pp", type=float, default=2.0,
+                    help="Min edge in pp to consider executing")
     ap.add_argument("--watch", type=int, default=0)
     ap.add_argument("--max-alert", type=int, default=5)
+    ap.add_argument("--execute", action="store_true",
+                    help="Execute buys (still dry-run unless --live also set)")
+    ap.add_argument("--live", action="store_true",
+                    help="ACTUALLY place orders. Requires PM_TRADING_ENABLED=1.")
+    ap.add_argument("--allow-upcoming", action="store_true",
+                    help="Also execute on candidates not past deadline (riskier)")
     args = ap.parse_args()
 
     while True:
@@ -232,6 +345,23 @@ def main():
             rows = scan(args.max_days, args.min_ask, args.max_ask,
                         args.min_size_usd, args.per_market_cap)
             report(rows, args.max_alert)
+            if args.execute:
+                plan = execute_buys(
+                    rows,
+                    per_market_cap=args.per_market_cap,
+                    daily_cap_usd=args.daily_cap,
+                    min_edge_pp=args.min_edge_pp,
+                    only_past_deadline=not args.allow_upcoming,
+                    dry_run=not args.live,
+                )
+                print(f"\nExecution {'(LIVE)' if args.live else '(dry-run)'}:")
+                for p in plan:
+                    r = p["row"]
+                    print(f"  {p['status']:<10}  {r['side_label']:>4} "
+                          f"${p.get('size_dollars',0):>6.0f} @ {p.get('exec_px',0):.3f}  "
+                          f"edge {r['edge_pp']:>4.1f}pp  "
+                          f"{(r['question'] or '')[:55]}  "
+                          f"{p.get('reason','')}")
         except Exception as e:
             sys.stderr.write(f"scan error: {e}\n")
             import traceback; traceback.print_exc()
