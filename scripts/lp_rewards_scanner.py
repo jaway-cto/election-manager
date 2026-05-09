@@ -148,14 +148,29 @@ def scan(min_volume_24h: float = 100.0,
             if r:
                 enriched.append(r)
 
-    # Score: lower liquidity + decent volume + sane spread = better for solo MM.
-    # We want existing book to be wide enough that we can quote inside.
+    # CORRECTED scoring (red-team finding #1: original score selected
+    # for ADVERSE-SELECTED markets — high vol+wide spread = pros chose
+    # not to make there because information toxicity > rebate).
+    #
+    # New score favours:
+    #   * LOW vol/liq ratio (not toxic)
+    #   * holdingRewardsEnabled (subsidy regardless of fills)
+    #   * NARROW existing spread (means market is settled, fills will
+    #     be benign; toxicity is high when spread is wide)
+    #   * Large absolute liquidity (book is real)
+    #
+    # Caveat: solo MM still net negative-EV without WebSocket book deltas
+    # and per-fill toxicity check. This scanner is now *informational*
+    # only — quote_plan is paper-mode until further hardening.
     for r in enriched:
-        sp = r.get("yes_spread_bps") or 0
+        sp = r.get("yes_spread_bps") or 9999
         liq = max(r["liquidityClob"], 1.0)
         vol = max(r["volume24hr"], 1.0)
-        # Reward signal: high vol, low liq, wide spread (we can tighten and earn)
-        r["mm_score"] = (vol / liq) * (sp / 100.0) * (1.0 if r["holdingRewardsEnabled"] else 0.5)
+        toxicity_proxy = vol / liq  # higher = more toxic flow
+        spread_penalty = sp / 100.0
+        rewards_bonus = 1.5 if r["holdingRewardsEnabled"] else 1.0
+        r["mm_score"] = rewards_bonus * 1000.0 / (
+            (1.0 + toxicity_proxy) * (1.0 + spread_penalty))
     enriched.sort(key=lambda r: -r["mm_score"])
     return enriched
 
@@ -179,7 +194,10 @@ def report(rows: list[dict], top: int = 25) -> None:
               f"{r['mm_score']:>6.2f}")
 
 
-def quote_plan(market: dict, capital_usd: float = 200.0,
+LP_PER_MARKET_CAP_USD = 50.0  # Hard cap per red-team finding #1.
+
+
+def quote_plan(market: dict, capital_usd: float = 50.0,
                edge_bps_target: int = 100) -> dict:
     """For a chosen market, compute the post-only quote pair we'd place.
 
@@ -226,17 +244,33 @@ def main():
     ap.add_argument("--top", type=int, default=25)
     ap.add_argument("--watch", type=int, default=0)
     ap.add_argument("--quote-plan", action="store_true",
-                    help="Print quote-pair plan for top N markets")
-    ap.add_argument("--capital", type=float, default=200.0,
-                    help="Capital per market for quote plan")
+                    help="Print quote-pair plan for top N markets (paper mode only)")
+    ap.add_argument("--capital", type=float, default=LP_PER_MARKET_CAP_USD,
+                    help=f"Capital per market for quote plan "
+                         f"(capped to ${LP_PER_MARKET_CAP_USD})")
     args = ap.parse_args()
+
+    if args.capital > LP_PER_MARKET_CAP_USD:
+        print(f"WARN: --capital reduced from ${args.capital} to "
+              f"${LP_PER_MARKET_CAP_USD} per red-team finding "
+              f"(LP rewards adverse-selection cap).")
+        args.capital = LP_PER_MARKET_CAP_USD
+
+    print("=" * 70)
+    print("LP REWARDS SCANNER — PAPER MODE ONLY")
+    print("Red-team finding #1: original mm_score selected adverse-")
+    print("selected markets. Score has been INVERTED to favor low-")
+    print("toxicity markets. quote_plan is informational; do NOT")
+    print("execute live until WebSocket book deltas + per-fill toxicity")
+    print("check are implemented (refinement #1 backlog).")
+    print("=" * 70)
 
     while True:
         try:
             rows = scan(args.min_volume_24h, args.max_liquidity, args.min_days)
             report(rows, args.top)
             if args.quote_plan:
-                print("\nQuote plans (top 5):")
+                print("\nQuote plans (top 5, paper mode):")
                 for r in rows[:5]:
                     plan = quote_plan(r, args.capital)
                     print(f"\n  {plan['question'][:70]}")

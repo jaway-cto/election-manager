@@ -105,14 +105,11 @@ def scan(min_edge_pp: float = 0.5, max_workers: int = 32,
                 pass
         if has_winner:
             continue
+        # CORRECTED: include "Another/Other" augmenter legs in basket
+        # sum (red-team finding #3). Previously we filtered these out,
+        # which made SumYES look <1.0 by construction = phantom edge.
         for m in ev.get("markets") or []:
             if m.get("closed") or m.get("archived"):
-                continue
-            git = (m.get("groupItemTitle") or "").lower()
-            q_lower = (m.get("question") or "").lower()
-            if any(p in git for p in ("another", "other ", "person ", "candidate ")):
-                continue
-            if any(p in q_lower for p in ("another candidate", "any other")):
                 continue
             ba = m.get("bestAsk")
             bb = m.get("bestBid")
@@ -127,10 +124,14 @@ def scan(min_edge_pp: float = 0.5, max_workers: int = 32,
             mid = (ba_f + bb_f) / 2.0
             ya += ba_f; yb += bb_f; ym += mid
             n += 1
+            git = (m.get("groupItemTitle") or "")
+            is_augmenter = bool(any(p in git.lower() for p in
+                                    ("another", "other ", "person ", "candidate ")))
             rows.append({
                 "question": m.get("question", "")[:80],
                 "bid": bb_f, "ask": ba_f, "mid": mid,
                 "yes_token": parse_clob_token_ids(m)[0],
+                "is_augmenter": is_augmenter,
             })
         if n < 2:
             continue
@@ -221,26 +222,42 @@ def report(rows: list[dict], min_edge_pp: float = 0.5,
                   f"sell {r['clob_sell_edge_pp']:+5.2f}pp  "
                   f"(Gamma: buy {r['buy_basket_edge_pp']:+.2f} / "
                   f"sell {r['sell_basket_edge_pp']:+.2f})")
-    # Alert on actionable edges
+    # Per red-team findings: enforce minimum gross edge AND per-leg edge,
+    # AND subtract NegRisk multi-leg surcharge (2.04%) before alerting.
+    from validator_core import (
+        NEGRISK_BASKET_MIN_GROSS_BPS, NEGRISK_PER_LEG_MIN_BPS,
+        NEGRISK_SURCHARGE_BPS,
+    )
+    NEGRISK_MIN_GROSS_PP = NEGRISK_BASKET_MIN_GROSS_BPS / 100.0
+    NEGRISK_SURCHARGE_PP = NEGRISK_SURCHARGE_BPS / 100.0
+    NEGRISK_MIN_PER_LEG_PP = NEGRISK_PER_LEG_MIN_BPS / 100.0
+
     for r in rows[:5]:
-        if r["buy_basket_edge_pp"] >= min_edge_pp:
-            alert(f"negRisk BUY basket {r['event_title'][:60]} — "
-                  f"edge {r['buy_basket_edge_pp']:+.2f}pp, "
-                  f"SumAsk {r['yes_ask_sum']:.3f}")
-            event("negrisk.signal", {
-                "event_id": r["event_id"], "side": "BUY",
-                "edge_pp": r["buy_basket_edge_pp"],
-                "sum_ask": r["yes_ask_sum"],
-            })
-        elif r["sell_basket_edge_pp"] >= min_edge_pp:
-            alert(f"negRisk SELL basket {r['event_title'][:60]} — "
-                  f"edge {r['sell_basket_edge_pp']:+.2f}pp, "
-                  f"SumBid {r['yes_bid_sum']:.3f}")
-            event("negrisk.signal", {
-                "event_id": r["event_id"], "side": "SELL",
-                "edge_pp": r["sell_basket_edge_pp"],
-                "sum_bid": r["yes_bid_sum"],
-            })
+        # Per-leg minimum: compute the implied per-leg cushion
+        per_leg_avg = ((1.0 - r["yes_ask_sum"]) / max(r["n_markets"], 1)) * 100
+        for direction, gross_edge_pp, sum_label, sum_val in (
+            ("BUY", r["buy_basket_edge_pp"], "SumAsk", r["yes_ask_sum"]),
+            ("SELL", r["sell_basket_edge_pp"], "SumBid", r["yes_bid_sum"]),
+        ):
+            net_after_surcharge = gross_edge_pp - NEGRISK_SURCHARGE_PP
+            if (gross_edge_pp >= NEGRISK_MIN_GROSS_PP
+                    and abs(per_leg_avg) >= NEGRISK_MIN_PER_LEG_PP
+                    and net_after_surcharge >= min_edge_pp):
+                alert(
+                    f"negRisk {direction} basket {r['event_title'][:60]} - "
+                    f"gross {gross_edge_pp:+.2f}pp, "
+                    f"net {net_after_surcharge:+.2f}pp after 2.04% surcharge, "
+                    f"per-leg avg {per_leg_avg:+.2f}pp, "
+                    f"{sum_label} {sum_val:.3f}"
+                )
+                event("negrisk.signal", {
+                    "event_id": r["event_id"], "side": direction,
+                    "gross_pp": gross_edge_pp,
+                    "net_pp": net_after_surcharge,
+                    "per_leg_pp": per_leg_avg,
+                    "sum": sum_val,
+                })
+                break  # one alert per event
 
 
 def main():

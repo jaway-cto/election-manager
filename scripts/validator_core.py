@@ -302,22 +302,122 @@ class FilterParams:
 def fees_for_market(market: dict | None) -> tuple[float, float]:
     """Read taker fee + maker rebate (bps) from a Polymarket market dict.
     Returns (taker_fee_bps, maker_rebate_bps).
+
+    Polymarket V2 fee schedule (Mar 2026): fee = rate * p * (1-p) * notional.
+    Peak fee at p=0.50. Returns the PEAK fee in bps; callers can scale down
+    by 4*p*(1-p) at the actual trade price for more accuracy.
     """
     if not market:
         return (200.0, 0.0)
     fs = market.get("feeSchedule") or {}
     rate = float(fs.get("rate") or 0)
     rebate = float(fs.get("rebateRate") or 0)
-    # Polymarket fee rate is a fraction of trade value (0.07 = 7%, but that's
-    # in bps-of-decimal-price form: 0.07 means 70bps in our convention).
-    # Empirically rate=0.07 corresponds to 70 bps fee.
-    return (rate * 1000.0, rebate * 1000.0)
+    # rate=0.072 → peak 180 bps fee at p=0.5 (= rate * 0.25 * 10000).
+    return (rate * 2500.0, rebate * 2500.0)
+
+
+# Per-category minimum gross edge (in bps) required to clear the full UK
+# cost stack: PM taker fee + Polygon gas + spread cross + GBP/USD FX + CGT.
+# Source: docs/RED_TEAM_FINDINGS.md cost-forensics analysis (2026-05-09).
+MIN_EDGE_BPS_BY_CATEGORY = {
+    "geopolitical":  300,   # fee-free, one-sided held to redemption
+    "sports":        450,   # 0.030 fee tier
+    "finance":       550,   # 0.040 fee tier (WTI, rates)
+    "politics":      550,   # 0.040
+    "tech":          550,
+    "culture":       650,   # 0.050 (Eurovision, awards)
+    "economics":     650,
+    "weather":       650,
+    "crypto":        750,   # 0.072
+}
+NEGRISK_BASKET_MIN_GROSS_BPS = 800     # 8pp gross
+NEGRISK_PER_LEG_MIN_BPS = 200          # 2pp per leg
+NEGRISK_SURCHARGE_BPS = 204            # PM-documented multi-leg conversion
+FX_GBP_USD_DRAG_BPS = 70               # ~1σ on 1-week hold
+UK_CGT_DRAG_BPS = 200                  # 24% CGT on USDC disposals applied to net
+
+
+# Markets to exclude entirely until UMA dispute history is reviewed.
+# Adversarial agent flagged these as systematic loss vectors.
+BLACKLIST_KEYWORDS = [
+    "war ", "invades", "military strike", "drone strike",
+    "election fraud", "stolen election",
+    "hostage", "coup ", "regime change",
+    "nuclear weapon", "biological weapon",
+]
 
 
 def edge_after_fees(edge_bps_gross: float, taker_fee_bps: float = 200.0,
-                    maker_rebate_bps: float = 0.0) -> float:
-    """Net edge after one-way taker fee. Two-leg arbitrage doubles fees."""
-    return edge_bps_gross - taker_fee_bps + maker_rebate_bps
+                    maker_rebate_bps: float = 0.0,
+                    *, is_two_legged: bool = False,
+                    is_negrisk_basket: bool = False,
+                    apply_fx: bool = True,
+                    apply_cgt: bool = False) -> float:
+    """Net edge after the full UK cost stack.
+
+    Args:
+        is_two_legged: round-trip (entry + exit) doubles taker fee
+        is_negrisk_basket: subtract 2.04% conversion surcharge
+        apply_fx: subtract 70bps FX drag on 1-week hold (default True for
+                  any USD-denominated edge realised by a GBP-base operator)
+        apply_cgt: subtract 200bps CGT drag (only if conservatively assuming
+                  HMRC classifies as CGT — operator should leave default OFF
+                  for paper-mode edge assessment, set ON for after-tax target)
+    """
+    fee_legs = 2 if is_two_legged else 1
+    net = edge_bps_gross - taker_fee_bps * fee_legs + maker_rebate_bps
+    if is_negrisk_basket:
+        net -= NEGRISK_SURCHARGE_BPS
+    if apply_fx:
+        net -= FX_GBP_USD_DRAG_BPS
+    if apply_cgt and net > 0:
+        net -= UK_CGT_DRAG_BPS
+    return net
+
+
+def is_blacklisted(market: dict | None) -> bool:
+    """Geopolitical/war/fraud markets banned per red-team findings."""
+    if not market:
+        return False
+    text = ((market.get("question") or "") + " " +
+            (market.get("description") or "") + " " +
+            (market.get("groupItemTitle") or "")).lower()
+    return any(kw in text for kw in BLACKLIST_KEYWORDS)
+
+
+def market_category(market: dict | None) -> str:
+    """Best-effort category extraction for fee-tier mapping."""
+    if not market:
+        return "politics"
+    cat = (market.get("category") or "").lower()
+    if cat:
+        for known in MIN_EDGE_BPS_BY_CATEGORY:
+            if known in cat:
+                return known
+    # Fall back to keyword heuristics on tags / question
+    txt = ((market.get("question") or "") + " " +
+           " ".join(market.get("tags") or [])).lower()
+    if any(k in txt for k in ("bitcoin", "btc", "eth", "crypto", "ether")):
+        return "crypto"
+    if any(k in txt for k in ("nfl", "nba", "mlb", "nhl", "soccer", "tennis", "ufc", "mma")):
+        return "sports"
+    if any(k in txt for k in ("wti", "oil", "gold", "copper", "natural gas", "gas")):
+        return "finance"
+    if any(k in txt for k in ("fed", "rate", "cpi", "nfp", "gdp", "ecb", "boe")):
+        return "finance"
+    if any(k in txt for k in ("temperature", "snowfall", "hurricane", "weather")):
+        return "weather"
+    if any(k in txt for k in ("eurovision", "oscar", "emmy", "grammy", "awards",
+                              "movie", "film", "song", "album")):
+        return "culture"
+    if any(k in txt for k in ("ukraine", "russia", "iran", "israel", "china",
+                              "war", "ceasefire", "treaty")):
+        return "geopolitical"
+    return "politics"
+
+
+def min_edge_for_category(market: dict) -> float:
+    return MIN_EDGE_BPS_BY_CATEGORY.get(market_category(market), 550.0)
 
 
 def should_skip(quote: Quote, oi: dict | None, edge_bps_val: float,
@@ -505,21 +605,38 @@ def evaluate_market(market: dict, fair: float,
         row.skip_reason = "no price"
         return row
 
+    # Geopolitical / war / fraud blacklist (red-team flag #4)
+    if is_blacklisted(market):
+        row.skipped = True
+        row.skip_reason = "blacklisted (geopolitical/war/fraud) — UMA risk"
+        row.edge_bps = 0
+        return row
+
     action, eb = edge_action(fair, pm, threshold_bps)
     row.edge_bps = eb
     row.action = action
 
-    # Net edge after fees — what actually matters for execution.
+    # Net edge after the full UK cost stack (fee + FX), excluding CGT
+    # (CGT applied to realised P&L, not signal evaluation).
     taker, rebate = fees_for_market(market)
-    row.edge_bps_net = edge_after_fees(eb if eb >= 0 else -abs(eb), taker, rebate)
-    if eb < 0:
-        row.edge_bps_net = -row.edge_bps_net
     row.taker_fee_bps = taker
+    eb_abs = abs(eb)
+    net_abs = edge_after_fees(eb_abs, taker, rebate, is_two_legged=True,
+                              apply_fx=True, apply_cgt=False)
+    row.edge_bps_net = net_abs if eb >= 0 else -net_abs
 
     skip, reason = should_skip(quote, oi, eb, params)
-    if not skip and abs(row.edge_bps_net) < threshold_bps / 2.0:
-        skip = True
-        reason = f"net edge {row.edge_bps_net:.0f}bps < threshold after fees"
+    if not skip:
+        # Per-category minimum-edge gate (red-team findings #1).
+        min_bps = min_edge_for_category(market)
+        if eb_abs < min_bps:
+            skip = True
+            reason = (f"gross edge {eb_abs:.0f}bps < category min "
+                      f"{min_bps:.0f}bps ({market_category(market)})")
+        elif net_abs < threshold_bps / 2.0:
+            skip = True
+            reason = (f"net edge {net_abs:.0f}bps < threshold/2 after "
+                      f"taker {taker:.0f}bps + FX {FX_GBP_USD_DRAG_BPS}bps")
     if skip:
         row.skipped = True
         row.skip_reason = reason

@@ -50,7 +50,20 @@ from clob_client import client as clob
 
 SUBJECTIVE_BANLIST = [
     "substantially", "primarily", "mostly", "considered", "deemed",
-    "interpreted", "subjective",
+    "interpreted", "subjective", "appears", "perceived", "generally",
+]
+
+# Positive whitelist: resolution criteria that are quantitative + public-data
+# verifiable (red-team finding #2). Markets matching one of these patterns
+# are eligible for auto-execute; everything else requires manual review.
+import re
+OBJECTIVE_PATTERNS = [
+    re.compile(r"\bclos(e|es|ing)\s+(price|value)\b", re.I),
+    re.compile(r"\bofficial\s+(result|score|count)", re.I),
+    re.compile(r"\b(coinbase|binance|kraken|deribit)\b.*\b(price|close|spot)", re.I),
+    re.compile(r"\baccording\s+to\s+(reuters|ap|bbc|bloomberg)", re.I),
+    re.compile(r"\b(per|by)\s+\d+(\:\d+)?\s*(am|pm|et|utc|gmt)", re.I),
+    re.compile(r"\b(at|>=|≥|<=|≤|above|below|exceeds)\s*\$?\d", re.I),
 ]
 
 
@@ -95,6 +108,14 @@ def is_subjective(market: dict) -> bool:
     desc = (market.get("description") or "") + " " + (market.get("question") or "")
     desc = desc.lower()
     return any(b in desc for b in SUBJECTIVE_BANLIST)
+
+
+def has_objective_resolution(market: dict) -> bool:
+    """Positive whitelist — at least one objective resolution-criteria
+    pattern present. Required for auto-execute (red-team finding #2).
+    """
+    desc = (market.get("description") or "") + " " + (market.get("question") or "")
+    return any(p.search(desc) for p in OBJECTIVE_PATTERNS)
 
 
 def _eval_market(m: dict, min_ask: float, max_ask: float,
@@ -216,9 +237,11 @@ def report(rows: list[dict], max_alert: int = 5) -> None:
         })
 
 
-def execute_buys(rows: list[dict], *, per_market_cap: float = 200.0,
-                 daily_cap_usd: float = 1000.0, min_edge_pp: float = 2.0,
-                 only_past_deadline: bool = True,
+def execute_buys(rows: list[dict], *, per_market_cap: float = 100.0,
+                 daily_cap_usd: float = 300.0, min_edge_pp: float = 3.0,
+                 only_past_deadline: bool = False,
+                 require_objective: bool = True,
+                 max_executions_per_run: int = 3,
                  dry_run: bool = True) -> list[dict]:
     """Place BUY orders for the highest-confidence candidates.
 
@@ -250,13 +273,38 @@ def execute_buys(rows: list[dict], *, per_market_cap: float = 200.0,
 
     plan: list[dict] = []
     spent = 0.0
+    executions = 0
     for r in rows:
+        if executions >= max_executions_per_run:
+            break
         if only_past_deadline and not r["past_deadline"]:
             continue
         if r["edge_pp"] < min_edge_pp:
             continue
         if r["market_id"] in open_market_ids:
             continue  # avoid double-up on same market
+        # Red-team finding #2: positive whitelist gate
+        if require_objective:
+            # We need the original market dict; we stored question only.
+            # Re-fetch to check resolution criteria.
+            from validator_core import gamma_search
+            res = gamma_search(r["question"][:60], limit=3)
+            mk = None
+            for src in (res.get("markets") or [], res.get("events") or []):
+                for it in src:
+                    if str(it.get("id")) == str(r["market_id"]):
+                        mk = it
+                        break
+                    for sub in it.get("markets", []) or []:
+                        if str(sub.get("id")) == str(r["market_id"]):
+                            mk = sub
+                            break
+                if mk:
+                    break
+            if mk and not has_objective_resolution(mk):
+                plan.append({"row": r, "status": "skip",
+                             "reason": "no objective resolution criteria match"})
+                continue
         # Spread re-check: book may have changed; refetch
         from validator_core import get_quote
         q = get_quote(r["token"])
@@ -305,8 +353,9 @@ def execute_buys(rows: list[dict], *, per_market_cap: float = 200.0,
                     notes=f"past_deadline={r['past_deadline']}",
                 )
                 alert(f"FILLED tail-decay {r['side_label']} @ {q.ask:.3f} "
-                      f"({size_shares:.0f} shares = ${size_dollars:.0f}) — "
+                      f"({size_shares:.0f} shares = ${size_dollars:.0f}) - "
                       f"{(r['question'] or '')[:80]}")
+                executions += 1
             except Exception as e:
                 plan_entry["status"] = "error"
                 plan_entry["reason"] = str(e)
@@ -324,20 +373,24 @@ def main():
     ap.add_argument("--min-ask", type=float, default=0.85)
     ap.add_argument("--max-ask", type=float, default=0.99)
     ap.add_argument("--min-size-usd", type=float, default=50.0)
-    ap.add_argument("--per-market-cap", type=float, default=200.0,
-                    help="Max $ to spend per single market")
-    ap.add_argument("--daily-cap", type=float, default=1000.0,
-                    help="Max $ to spend per scan/run (cumulative across markets)")
-    ap.add_argument("--min-edge-pp", type=float, default=2.0,
-                    help="Min edge in pp to consider executing")
+    ap.add_argument("--per-market-cap", type=float, default=100.0,
+                    help="Max $ to spend per single market (default $100)")
+    ap.add_argument("--daily-cap", type=float, default=300.0,
+                    help="Max $ to spend per scan/run (default $300)")
+    ap.add_argument("--min-edge-pp", type=float, default=3.0,
+                    help="Min edge in pp to execute (default 3pp after fees)")
     ap.add_argument("--watch", type=int, default=0)
     ap.add_argument("--max-alert", type=int, default=5)
+    ap.add_argument("--max-executions", type=int, default=3,
+                    help="Max executions per run (red-team rule)")
     ap.add_argument("--execute", action="store_true",
                     help="Execute buys (still dry-run unless --live also set)")
     ap.add_argument("--live", action="store_true",
                     help="ACTUALLY place orders. Requires PM_TRADING_ENABLED=1.")
-    ap.add_argument("--allow-upcoming", action="store_true",
-                    help="Also execute on candidates not past deadline (riskier)")
+    ap.add_argument("--allow-past-deadline-only", action="store_true",
+                    help="Restrict to past-deadline (DANGEROUS — adverse selected per red-team)")
+    ap.add_argument("--skip-objective-check", action="store_true",
+                    help="Skip positive resolution-criteria whitelist (NOT recommended)")
     args = ap.parse_args()
 
     while True:
@@ -351,7 +404,9 @@ def main():
                     per_market_cap=args.per_market_cap,
                     daily_cap_usd=args.daily_cap,
                     min_edge_pp=args.min_edge_pp,
-                    only_past_deadline=not args.allow_upcoming,
+                    only_past_deadline=args.allow_past_deadline_only,
+                    require_objective=not args.skip_objective_check,
+                    max_executions_per_run=args.max_executions,
                     dry_run=not args.live,
                 )
                 print(f"\nExecution {'(LIVE)' if args.live else '(dry-run)'}:")
