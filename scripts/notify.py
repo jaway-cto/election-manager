@@ -38,7 +38,10 @@ def _log(level: str, channel: str, msg: str) -> None:
             f.write(line)
     except Exception:
         pass
-    sys.stdout.write(line)
+    try:
+        sys.stdout.write(line)
+    except UnicodeEncodeError:
+        sys.stdout.write(line.encode("ascii", "replace").decode("ascii"))
     sys.stdout.flush()
 
 

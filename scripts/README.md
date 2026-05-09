@@ -21,6 +21,12 @@ python -m pollers.daemon --once
 python -m pollers.daemon
 ```
 
+## Cross-venue / models (Week 4)
+- `venues/betfair_client.py` — Betfair Exchange Betting API wrapper. Reads `BETFAIR_APP_KEY`/`BETFAIR_USERNAME`/`BETFAIR_PASSWORD` env vars; degrades gracefully without keys.
+- `cross_venue_pm_betfair.py` — Scans pairs in `data/pm_betfair_pairs.csv`, computes both arb directions (BUY PM + LAY BF, SELL PM + BACK BF) net of taker fees and 5% Betfair commission.
+- `data/pm_betfair_pairs.csv` — Manual mapping of PM slug × Betfair market id. Fill in `bf_market_id` column once Betfair app key is approved (~3 day approval at developer.betfair.com).
+- `models/oscar_precursors.py` — Logistic regression predicting Oscar Best Picture from BAFTA/PGA/DGA/SAG/CCA/Globe winners. 25-year training set, 68% LOYO accuracy. PGA + CCA strongest positive predictors; BAFTA negative (UK-bias).
+
 ## Multi-event scanners
 - `tail_decay_scanner.py` — Residual asks on past/near-deadline markets, with auto-execution gates
 - `lp_rewards_scanner.py` — CLOB v2 rewards-eligible markets ranked for solo MM
