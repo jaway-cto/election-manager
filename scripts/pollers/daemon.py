@@ -23,7 +23,11 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from notify import fyi
 import killswitch
+from backtest_validator import install_capture_hook
 from pollers import scotus, nhc, fda
+
+# Auto-capture every event() call to data/signals.jsonl for backtesting
+install_capture_hook()
 
 
 def scotus_cadence() -> int:

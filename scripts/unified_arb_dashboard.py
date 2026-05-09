@@ -23,6 +23,10 @@ from contextlib import redirect_stdout
 from typing import Callable
 
 from validator_core import EdgeRow, format_table, rank_edges
+from backtest_validator import install_capture_hook
+
+# Auto-capture every event() call to data/signals.jsonl for backtesting
+install_capture_hook()
 
 
 # Each entry: (label, callable returning list[EdgeRow])
