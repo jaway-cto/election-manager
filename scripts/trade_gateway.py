@@ -50,6 +50,7 @@ DAILY_CAP_GBP = float(os.environ.get("GATEWAY_DAILY_CAP", "300"))
 APPROVAL_THRESHOLD_GBP = float(os.environ.get("GATEWAY_APPROVAL_THRESHOLD", "25"))
 VENUE_BETFAIR_ENABLED = os.environ.get("GATEWAY_VENUE_BETFAIR") == "1"
 VENUE_SMARKETS_ENABLED = os.environ.get("GATEWAY_VENUE_SMARKETS") == "1"
+VENUE_IG_ENABLED = os.environ.get("GATEWAY_VENUE_IG") == "1"
 AUDIT_LOG_PATH = Path(os.environ.get(
     "GATEWAY_AUDIT_LOG", r"C:\Dev\odds\data\trade_audit.jsonl"))
 AUDIT_LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
@@ -64,6 +65,7 @@ APPROVAL_TIMEOUT_SECONDS = 300  # 5 min default — user can /approve <id>
 class Venue(str, Enum):
     BETFAIR = "betfair"
     SMARKETS = "smarkets"
+    IG = "ig"  # FCA-regulated spread-betting; CGT-exempt for UK retail
     POLYMARKET = "polymarket"  # blocked from UK; gateway will refuse
 
 
@@ -251,6 +253,47 @@ def _place_polymarket(req: OrderRequest) -> OrderResult:
                "or Smarkets equivalent.")
 
 
+def _place_ig(req: OrderRequest) -> OrderResult:
+    if not VENUE_IG_ENABLED:
+        return OrderResult(req, "denied_by_gate",
+                           reason="GATEWAY_VENUE_IG != 1")
+    try:
+        from venues.ig_client import IGClient, stake_gbp_to_ig_size
+        ig = IGClient.from_env()
+        if not ig.creds.ready():
+            return OrderResult(req, "failed",
+                               reason="IG creds not configured")
+        if not ig.login():
+            return OrderResult(req, "failed", reason="IG login failed")
+        # Direction mapping: BACK/BUY -> 'BUY' (long), LAY/SELL -> 'SELL' (short)
+        direction = "BUY" if req.side in (Side.BACK, Side.BUY) else "SELL"
+        # The market_id field carries the IG epic for IG trades.
+        meta = ig.get_market(req.market_id)
+        if not meta:
+            return OrderResult(req, "failed",
+                               reason=f"IG market {req.market_id} not found")
+        size = stake_gbp_to_ig_size(req.stake_gbp, meta, req.price)
+        deal_ref = ig.place_order(epic=req.market_id, direction=direction,
+                                  size=size, order_type="MARKET")
+        if not deal_ref:
+            ig.logout()
+            return OrderResult(req, "failed", reason="IG rejected order")
+        confirm = ig.confirm_deal(deal_ref) or {}
+        ig.logout()
+        if confirm.get("dealStatus") == "ACCEPTED":
+            return OrderResult(
+                req, "placed", order_id=str(confirm.get("dealId")),
+                fill_price=float(confirm.get("level") or req.price),
+                fill_size=req.stake_gbp,
+                placed_at=dt.datetime.now(dt.timezone.utc).isoformat(),
+            )
+        return OrderResult(req, "failed",
+                           reason=f"IG dealStatus: {confirm.get('dealStatus')} "
+                                  f"reason: {confirm.get('reason')}")
+    except Exception as e:
+        return OrderResult(req, "failed", reason=f"ig: {e}")
+
+
 # ============================================================================
 # Public API — single entry point for any trade
 # ============================================================================
@@ -307,6 +350,8 @@ def place_order(req: OrderRequest) -> OrderResult:
         result = _place_betfair(req)
     elif req.venue == Venue.SMARKETS:
         result = _place_smarkets(req)
+    elif req.venue == Venue.IG:
+        result = _place_ig(req)
     elif req.venue == Venue.POLYMARKET:
         result = _place_polymarket(req)
     else:
