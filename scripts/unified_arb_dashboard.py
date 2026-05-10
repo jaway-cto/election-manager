@@ -111,6 +111,36 @@ def run_all() -> dict[str, list[EdgeRow]]:
     return out
 
 
+def _emit_signals(results: dict[str, list[EdgeRow]],
+                  min_bps: float = 200) -> int:
+    """Emit notify.event() for every actionable EdgeRow so the backtest
+    capture hook writes them to signals.jsonl. Returns count emitted."""
+    from notify import event as log_event
+    n = 0
+    for validator_name, rows in results.items():
+        for r in rows:
+            if r.edge_bps is None or abs(r.edge_bps) < min_bps:
+                continue
+            if r.skipped:
+                continue
+            log_event(f"{validator_name.replace('-', '_')}.signal", {
+                "validator": validator_name,
+                "market_id": r.market_id,
+                "yes_token": r.yes_token,
+                "side": "BUY" if (r.edge_bps or 0) > 0 else "SELL",
+                "ask": r.pm_yes,
+                "fair": r.fair,
+                "edge_pp": (r.edge_bps or 0) / 100,
+                "edge_bps_net": r.edge_bps_net,
+                "spread_bps": r.spread_bps,
+                "oi_usd": r.oi_usd,
+                "market": r.market[:80],
+                "action": r.action,
+            })
+            n += 1
+    return n
+
+
 def render_dashboard(results: dict[str, list[EdgeRow]],
                      min_bps: float = 200) -> str:
     now = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
@@ -204,6 +234,10 @@ def main():
     args = ap.parse_args()
     while True:
         results = run_all()
+        n_emitted = _emit_signals(results, args.min_bps)
+        if n_emitted:
+            sys.stderr.write(f"captured {n_emitted} actionable signals "
+                             f"to signals.jsonl\n")
         print_console_summary(results, args.min_bps)
         try:
             md = render_dashboard(results, args.min_bps)
