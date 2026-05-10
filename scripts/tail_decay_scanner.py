@@ -41,8 +41,9 @@ from typing import Optional
 import requests
 
 from validator_core import (
-    GAMMA, UA, get_quote, parse_clob_token_ids, fetch_oi,
+    GAMMA, UA, get_quote, parse_clob_token_ids, fetch_oi, gamma_event,
 )
+from market_classifier import safe_for_tail_decay, classify, Shape, Status
 from notify import alert, fyi, event
 import killswitch
 from clob_client import client as clob
@@ -68,12 +69,14 @@ OBJECTIVE_PATTERNS = [
 
 
 def fetch_closing_markets(max_days: int = 7, limit: int = 500) -> list[dict]:
-    """Pull markets ending in the next `max_days`."""
+    """Pull markets ending in the next `max_days`. (Note: Gamma `endDate`
+    is unreliable for ladder legs — we re-derive the deadline downstream
+    via market_classifier.effective_deadline. This fetch is intentionally
+    permissive to capture ladder legs even when their endDate is stale.)"""
     end_max = (dt.datetime.now(dt.timezone.utc)
                + dt.timedelta(days=max_days)).isoformat()
     out: list[dict] = []
     seen: set[str] = set()
-    # Pagination via offset
     for offset in range(0, 2000, limit):
         try:
             r = requests.get(
@@ -104,6 +107,26 @@ def fetch_closing_markets(max_days: int = 7, limit: int = 500) -> list[dict]:
     return out
 
 
+# In-process cache: avoid re-fetching the same event for sibling legs
+_EVENT_CACHE: dict[str, dict] = {}
+
+
+def fetch_event_for_market(market: dict) -> Optional[dict]:
+    """Fetch parent event so we can examine sibling legs (calendar ladders)."""
+    # Markets carry an 'events' list with the parent event slug
+    events_meta = market.get("events") or []
+    if events_meta:
+        slug = events_meta[0].get("slug")
+        if slug:
+            if slug in _EVENT_CACHE:
+                return _EVENT_CACHE[slug]
+            ev = gamma_event(slug)
+            if ev:
+                _EVENT_CACHE[slug] = ev
+                return ev
+    return None
+
+
 def is_subjective(market: dict) -> bool:
     desc = (market.get("description") or "") + " " + (market.get("question") or "")
     desc = desc.lower()
@@ -120,11 +143,21 @@ def has_objective_resolution(market: dict) -> bool:
 
 def _eval_market(m: dict, min_ask: float, max_ask: float,
                  min_size_usd: float, per_market_cap_usd: float) -> list[dict]:
-    """Per-market worker. Returns 0-2 candidate rows."""
+    """Per-market worker — uses market_classifier to apply the source-level
+    safety check before any price evaluation. Returns 0-2 candidate rows."""
     if m.get("closed") or m.get("archived") or not m.get("active", True):
         return []
     if is_subjective(m):
         return []
+    # SOURCE FIX: classify market in event context BEFORE treating endDate
+    # as a tail-decay signal. This catches calendar-ladder legs whose
+    # successor brackets are still live (e.g. Trump-China March 31 vs
+    # May 15/31 + June 30).
+    event = fetch_event_for_market(m)
+    safe, reason = safe_for_tail_decay(m, event)
+    if not safe:
+        return []
+    classification = classify(m, event)
     yes_tok, no_tok = parse_clob_token_ids(m)
     out: list[dict] = []
     for tok, side_label in ((yes_tok, "YES"), (no_tok, "NO")):
@@ -141,13 +174,9 @@ def _eval_market(m: dict, min_ask: float, max_ask: float,
             continue
         buy_dollars = min(q.ask * q.ask_size, per_market_cap_usd)
         edge_pp = (1.0 - q.ask) * 100
-        end_iso = m.get("endDate") or ""
-        past_deadline = False
-        try:
-            end_dt = dt.datetime.fromisoformat(end_iso.replace("Z", "+00:00"))
-            past_deadline = end_dt < dt.datetime.now(dt.timezone.utc)
-        except Exception:
-            pass
+        deadline = classification.effective_deadline
+        past_deadline = (deadline is not None
+                         and deadline < dt.datetime.now(dt.timezone.utc))
         out.append({
             "market_id": m.get("id"),
             "question": m.get("question"),
@@ -156,12 +185,14 @@ def _eval_market(m: dict, min_ask: float, max_ask: float,
             "token": tok,
             "ask": q.ask, "ask_size": q.ask_size,
             "spread_bps": q.spread_bps,
-            "end_date": end_iso,
+            "end_date": deadline.isoformat() if deadline else "",
             "past_deadline": past_deadline,
             "buy_shares": buy_dollars / q.ask,
             "buy_dollars": buy_dollars,
             "edge_pp": edge_pp,
             "volume_24h": m.get("volume24hr") or 0,
+            "shape": classification.shape.value,
+            "status": classification.status.value,
         })
     return out
 
